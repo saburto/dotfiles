@@ -53,7 +53,12 @@ nmap <Leader>w <Plug>(easymotion-overwin-w)
 set noshowmode
 
 let g:lightline = {
-	\ 'colorscheme' : 'solarized'
-	\}
+  \ 'colorscheme' : 'solarized'
+  \}
 
 let g:tmuxline_powerline_separators = 0
+
+map <C-s> <esc>:w<CR>
+imap <C-s> <esc>:w<CR>
+map <C-t> <esc>:tabnew<CR>
+
