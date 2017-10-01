@@ -1,21 +1,30 @@
+" Vundle
 set nocompatible
-
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
-call vundle#rc()
+call vundle#begin()
+Plugin 'VundleVim/Vundle.vim'
 
-Bundle 'jeffkreeftmeijer/vim-numbertoggle'
-Bundle 'edkolev/tmuxline.vim'
-Bundle 'tpope/vim-sensible.git'
-Bundle 'itchyny/lightline.vim'
-Bundle 'easymotion/vim-easymotion'
-Bundle 'kien/ctrlp.vim'
-Bundle 'ejholmes/vim-forcedotcom'
-Bundle 'derekwyatt/vim-scala'
-Bundle 'altercation/vim-colors-solarized.git'
+" Plugins
+Plugin 'jeffkreeftmeijer/vim-numbertoggle'
+Plugin 'edkolev/tmuxline.vim'
+Plugin 'tpope/vim-sensible.git'
+Plugin 'itchyny/lightline.vim'
+Plugin 'easymotion/vim-easymotion'
+Plugin 'kien/ctrlp.vim'
+Plugin 'derekwyatt/vim-scala'
+Plugin 'altercation/vim-colors-solarized.git'
+Plugin 'tpope/vim-surround'
+Plugin 'tpope/vim-repeat'
+Plugin 'tpope/vim-speeddating'
+Plugin 'scrooloose/syntastic'
+Plugin 'majutsushi/tagbar'
+Plugin 'airblade/vim-gitgutter'
 
+call vundle#end()
+filetype plugin indent on
 
-
+" Custom options
 set number relativenumber
 let g:solarized_termcolors=256
 set background=light
@@ -25,12 +34,13 @@ set sw=2
 set expandtab
 set list
 set eol
+
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
 nmap <Leader>f <Plug>(easymotion-overwin-f)
 
 " " s{char}{char} to move to {char}{char}
-nmap s <Plug>(easymotion-overwin-f2)
+"nmap s <Plug>(easymotion-overwin-f2)
 "
 " " Move to line
 map <Leader>L <Plug>(easymotion-bd-jk)
