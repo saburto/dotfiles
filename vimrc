@@ -1,4 +1,5 @@
 " Vundle
+
 set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
@@ -20,6 +21,12 @@ Plugin 'tpope/vim-speeddating'
 Plugin 'scrooloose/syntastic'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
+Plugin 'vimwiki/vimwiki'
+Plugin 'neowit/vim-force.com'
+Plugin 'valloric/youcompleteme'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
+Plugin 'christoomey/vim-tmux-runner'
 
 call vundle#end()
 filetype plugin indent on
@@ -62,6 +69,9 @@ map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 map <C-t> <esc>:tabnew<CR>
 
+command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
+map <Leader>p <esc>:w<CR>:Silent force aura push -f %<CR>
+
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'scala',
     \ 'sro'       : '.',
@@ -78,3 +88,40 @@ let g:tagbar_type_scala = {
       \ 'v:variables:1'
     \ ]
     \ }
+
+" configuration for ctrlp
+let g:ctrlp_use_caching = 0
+let g:ctrlp_prompt_mappings = {
+      \ 'AcceptSelection("e")': ['<c-t>'],
+      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
+      \ }
+
+"Configure swap and backup
+set backupdir=/tmp
+set directory=/tmp
+
+"Configuration of vim force
+
+let g:apex_tooling_force_dot_com_path = "/home/saburto/app/sfdc/toolling-force.com.jar"
+if !exists("g:apex_backup_folder")
+  " full path required here, relative may not work
+  let g:apex_backup_folder="/tmp"
+endif
+if !exists("g:apex_temp_folder")
+  " full path required here, relative may not work
+  let g:apex_temp_folder="/tmp"
+endif
+if !exists("g:apex_properties_folder")
+  " full path required here, relative may not work
+  let g:apex_properties_folder="/tmp"
+endif
+
+" make YCM compatible with UltiSnips (using supertab)
+let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
+let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
+let g:SuperTabDefaultCompletionType = '<C-n>'
+
+" better key bindings for UltiSnipsExpandTrigger
+let g:UltiSnipsExpandTrigger = "<tab>"
+let g:UltiSnipsJumpForwardTrigger = "<tab>"
+let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
