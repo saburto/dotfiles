@@ -41,3 +41,17 @@ source "/home/saburto/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 stty stop undef
 stty start undef
+
+alias tmux="env TERM=xterm-256color tmux"
+
+alias s="sfdx"
+alias sfo="sfdx force:org:open --path one/one.app"
+alias sfl="sfdx force:org:list --all"
+alias sfpush="sfdx force:source:push"
+alias sfpull="sfdx force:source:pull"
+
+[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
+export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
+export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
+

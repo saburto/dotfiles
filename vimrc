@@ -3,6 +3,7 @@
 set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
+set rtp+=~/.fzf
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
@@ -12,7 +13,8 @@ Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-sensible.git'
 Plugin 'itchyny/lightline.vim'
 Plugin 'easymotion/vim-easymotion'
-Plugin 'kien/ctrlp.vim'
+" Plugin 'kien/ctrlp.vim'
+Plugin 'junegunn/fzf.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tpope/vim-surround'
@@ -23,17 +25,24 @@ Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'vimwiki/vimwiki'
 Plugin 'neowit/vim-force.com'
-Plugin 'valloric/youcompleteme'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+"Plugin 'valloric/youcompleteme'
+"Plugin 'SirVer/ultisnips'
+"Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-runner'
+Plugin 'iCyMind/NeoSolarized'
+Plugin 'tpope/vim-fireplace'
+Plugin 'mileszs/ack.vim'
+Plugin 'junegunn/goyo.vim'
+Plugin 'junegunn/limelight.vim'
+Plugin 'vim-scripts/paredit.vim'
+Plugin 'kien/rainbow_parentheses.vim'
 
 call vundle#end()
 filetype plugin indent on
 
 " Custom options
 set number relativenumber
-let g:solarized_termcolors=256
+set cursorline
 set background=light
 colorscheme solarized
 set ts=2
@@ -68,9 +77,10 @@ let g:tmuxline_powerline_separators = 0
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 map <C-t> <esc>:tabnew<CR>
+nmap <Leader>b :Buffers<CR>
+nmap <Leader>t :Files<CR>
 
-command! -nargs=1 Silent execute ':silent !'.<q-args> | execute ':redraw!'
-map <Leader>p <esc>:w<CR>:Silent force aura push -f %<CR>
+
 
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'scala',
@@ -116,12 +126,15 @@ if !exists("g:apex_properties_folder")
   let g:apex_properties_folder="/tmp"
 endif
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>', '<Down>']
-let g:ycm_key_list_previous_completion = ['<C-p>', '<Up>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
+let g:ackprg = 'ag --vimgrep'
+let g:limelight_conceal_ctermfg = 'gray'
+autocmd! User GoyoEnter Limelight
+autocmd! User GoyoLeave Limelight!
 
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
+if has("autocmd")
+  filetype on
+  "map <Leader>p <esc>:w<CR>:!force aura push -f %<CR>
+  let test = expand('%:t:r').'Test'
+  autocmd FileType apexcode map <Leader>r <esc>:w<CR>:!force push -f % -test  '%:t:r'Test <CR>
+  autocmd FileType apexcode-test map <Leader>r <esc>:w<CR>:!force push -f % -test  '%:t:r'<CR>
+end
