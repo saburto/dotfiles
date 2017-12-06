@@ -1,4 +1,4 @@
-" Vundle
+" Vundle .vi
 
 set nocompatible
 filetype off
@@ -8,40 +8,42 @@ call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
 " Plugins
-Plugin 'jeffkreeftmeijer/vim-numbertoggle'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-sensible.git'
 Plugin 'itchyny/lightline.vim'
 Plugin 'easymotion/vim-easymotion'
-" Plugin 'kien/ctrlp.vim'
 Plugin 'junegunn/fzf.vim'
 Plugin 'derekwyatt/vim-scala'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
-Plugin 'scrooloose/syntastic'
+Plugin 'tpope/vim-fireplace'
 Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
-Plugin 'vimwiki/vimwiki'
 Plugin 'neowit/vim-force.com'
-"Plugin 'valloric/youcompleteme'
-"Plugin 'SirVer/ultisnips'
-"Plugin 'honza/vim-snippets'
+Plugin 'SirVer/ultisnips'
+Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-runner'
 Plugin 'iCyMind/NeoSolarized'
-Plugin 'tpope/vim-fireplace'
 Plugin 'mileszs/ack.vim'
 Plugin 'junegunn/goyo.vim'
 Plugin 'junegunn/limelight.vim'
 Plugin 'vim-scripts/paredit.vim'
-Plugin 'kien/rainbow_parentheses.vim'
+Plugin 'benmills/vimux'
+Plugin 'w0rp/ale'
+Plugin 'roxma/vim-hug-neovim-rpc'
+Plugin 'roxma/nvim-completion-manager'
+Plugin 'cohama/agit.vim'
+Plugin 'machakann/vim-highlightedyank'
+
+
 
 call vundle#end()
 filetype plugin indent on
 
 " Custom options
-set number relativenumber
+set number
 set cursorline
 set background=light
 colorscheme solarized
@@ -50,6 +52,7 @@ set sw=2
 set expandtab
 set list
 set eol
+
 
 " <Leader>f{char} to move to {char}
 map  <Leader>f <Plug>(easymotion-bd-f)
@@ -77,8 +80,8 @@ let g:tmuxline_powerline_separators = 0
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 map <C-t> <esc>:tabnew<CR>
-nmap <Leader>b :Buffers<CR>
-nmap <Leader>t :Files<CR>
+map <C-p> <esc>:Files<CR>
+map <C-e> <esc>:Buffers<CR>
 
 
 
@@ -112,6 +115,7 @@ set directory=/tmp
 
 "Configuration of vim force
 
+
 let g:apex_tooling_force_dot_com_path = "/home/saburto/app/sfdc/toolling-force.com.jar"
 if !exists("g:apex_backup_folder")
   " full path required here, relative may not work
@@ -135,6 +139,22 @@ if has("autocmd")
   filetype on
   "map <Leader>p <esc>:w<CR>:!force aura push -f %<CR>
   let test = expand('%:t:r').'Test'
-  autocmd FileType apexcode map <Leader>r <esc>:w<CR>:!force push -f % -test  '%:t:r'Test <CR>
-  autocmd FileType apexcode-test map <Leader>r <esc>:w<CR>:!force push -f % -test  '%:t:r'<CR>
+  autocmd FileType apexcode map <Leader>r <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r") . "Test")<CR>
+  autocmd FileType apexcode-test map <Leader>r <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r"))<CR>
 end
+
+let g:fzf_tags_command = 'ctags -R'
+let g:python3_host_prog = '/usr/bin/python3'
+
+
+noremap <Up> <Nop>
+noremap <Down> <Nop>
+noremap <Left> <Nop>
+noremap <Right> <Nop>
+
+nnoremap k gk
+nnoremap gk k
+nnoremap j gj
+nnoremap gj j
+
+map y <Plug>(highlightedyank)
