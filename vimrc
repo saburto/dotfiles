@@ -11,31 +11,22 @@ Plugin 'VundleVim/Vundle.vim'
 Plugin 'edkolev/tmuxline.vim'
 Plugin 'tpope/vim-sensible.git'
 Plugin 'itchyny/lightline.vim'
-Plugin 'easymotion/vim-easymotion'
 Plugin 'junegunn/fzf.vim'
-Plugin 'derekwyatt/vim-scala'
 Plugin 'altercation/vim-colors-solarized.git'
 Plugin 'tpope/vim-surround'
 Plugin 'tpope/vim-repeat'
 Plugin 'tpope/vim-speeddating'
 Plugin 'tpope/vim-fireplace'
-Plugin 'majutsushi/tagbar'
 Plugin 'airblade/vim-gitgutter'
 Plugin 'neowit/vim-force.com'
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
 Plugin 'christoomey/vim-tmux-runner'
-Plugin 'iCyMind/NeoSolarized'
 Plugin 'mileszs/ack.vim'
-Plugin 'junegunn/goyo.vim'
-Plugin 'junegunn/limelight.vim'
 Plugin 'vim-scripts/paredit.vim'
 Plugin 'benmills/vimux'
 Plugin 'w0rp/ale'
-Plugin 'roxma/vim-hug-neovim-rpc'
-Plugin 'roxma/nvim-completion-manager'
 Plugin 'cohama/agit.vim'
 Plugin 'machakann/vim-highlightedyank'
+Plugin 'vimwiki/vimwiki'
 
 
 
@@ -54,22 +45,6 @@ set list
 set eol
 
 
-" <Leader>f{char} to move to {char}
-map  <Leader>f <Plug>(easymotion-bd-f)
-nmap <Leader>f <Plug>(easymotion-overwin-f)
-
-" " s{char}{char} to move to {char}{char}
-"nmap s <Plug>(easymotion-overwin-f2)
-"
-" " Move to line
-map <Leader>L <Plug>(easymotion-bd-jk)
-nmap <Leader>L <Plug>(easymotion-overwin-line)
-"
-" " Move to word
-map  <Leader>w <Plug>(easymotion-bd-w)
-nmap <Leader>w <Plug>(easymotion-overwin-w)
-
-set noshowmode
 
 let g:lightline = {
   \ 'colorscheme' : 'solarized'
@@ -84,6 +59,12 @@ map <C-p> <esc>:Files<CR>
 map <C-e> <esc>:Buffers<CR>
 
 
+imap <c-x><c-k> <plug>(fzf-complete-word)
+imap <c-x><c-f> <plug>(fzf-complete-path)
+imap <c-x><c-j> <plug>(fzf-complete-file-ag)
+imap <c-x><c-l> <plug>(fzf-complete-line)
+
+inoremap <expr> <c-x><c-k> fzf#vim#complete#word({'left': '15%'})
 
 let g:tagbar_type_scala = {
     \ 'ctagstype' : 'scala',
@@ -102,12 +83,6 @@ let g:tagbar_type_scala = {
     \ ]
     \ }
 
-" configuration for ctrlp
-let g:ctrlp_use_caching = 0
-let g:ctrlp_prompt_mappings = {
-      \ 'AcceptSelection("e")': ['<c-t>'],
-      \ 'AcceptSelection("t")': ['<cr>', '<2-LeftMouse>'],
-      \ }
 
 "Configure swap and backup
 set backupdir=/tmp
@@ -158,3 +133,5 @@ nnoremap j gj
 nnoremap gj j
 
 map y <Plug>(highlightedyank)
+
+set omnifunc=syntaxcomplete#Complete
