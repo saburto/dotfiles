@@ -114,8 +114,9 @@ if has("autocmd")
   filetype on
   "map <Leader>p <esc>:w<CR>:!force aura push -f %<CR>
   let test = expand('%:t:r').'Test'
-  autocmd FileType apexcode map <Leader>r <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r") . "Test")<CR>
-  autocmd FileType apexcode-test map <Leader>r <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r"))<CR>
+   autocmd BufNewFile,BufRead *.cls map <Leader>t <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r") . "Test")<CR>
+   autocmd BufNewFile,BufRead *.cls map <Leader>r <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r"))<CR>
+   autocmd BufNewFile,BufRead *.cls map <Leader>d <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p"))<CR>
 end
 
 let g:fzf_tags_command = 'ctags -R'

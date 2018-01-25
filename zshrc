@@ -51,6 +51,14 @@ alias sfl="sfdx force:org:list --all"
 alias sfpush="sfdx force:source:push"
 alias sfpull="sfdx force:source:pull"
 
+
+writecmd () { 
+  perl -e 'ioctl STDOUT, 0x5412, $_ for split //, do{ chomp($_ = <>); $_ }' ; 
+}
+
+alias sf="cat ~/.sfdxcommands | awk '{print \$1}' | fzf --preview 'sfdx help {}' | awk '{print \"sfdx \" \$1}'|  writecmd"
+
+
 [ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
 export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
@@ -60,3 +68,5 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 alias vimf="vim \$(fzf)"
 alias \$=time
 
+export NVM_DIR="/home/saburto/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
