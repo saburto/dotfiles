@@ -1,5 +1,6 @@
 export ZSH=/home/saburto/.oh-my-zsh
 
+
 ZSH_THEME="spaceship"
 
 SPACESHIP_PROMPT_ORDER=(
@@ -57,3 +58,5 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 alias vimf="vim \$(fzf)"
+alias \$=time
+

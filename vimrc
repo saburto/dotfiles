@@ -27,7 +27,7 @@ Plugin 'w0rp/ale'
 Plugin 'cohama/agit.vim'
 Plugin 'machakann/vim-highlightedyank'
 Plugin 'vimwiki/vimwiki'
-
+Plugin 'mrtazz/simplenote.vim'
 
 
 call vundle#end()
@@ -135,3 +135,5 @@ nnoremap gj j
 map y <Plug>(highlightedyank)
 
 set omnifunc=syntaxcomplete#Complete
+
+source ~/.simplenoterc
