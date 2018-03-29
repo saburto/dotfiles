@@ -1,4 +1,4 @@
-export ZSH=/home/saburto/.oh-my-zsh
+export ZSH=$HOME/.oh-my-zsh
 
 
 ZSH_THEME="spaceship"
@@ -34,11 +34,11 @@ if [ -d "$HOME/.local/bin" ]; then
 fi
 
 #THIS MUST BE AT THE END OF THE FILE FOR SDKMAN TO WORK!!!
-export SDKMAN_DIR="/home/saburto/.sdkman"
-[[ -s "/home/saburto/.sdkman/bin/sdkman-init.sh" ]] && source "/home/saburto/.sdkman/bin/sdkman-init.sh"
+export SDKMAN_DIR="$HOME/.sdkman"
+[[ -s "$HOME/.sdkman/bin/sdkman-init.sh" ]] && source "$HOME/.sdkman/bin/sdkman-init.sh"
 
 
-source "/home/saburto/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
+source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 stty stop undef
 stty start undef
@@ -68,5 +68,6 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 alias vimf="vim \$(fzf)"
 alias \$=time
 
-export NVM_DIR="/home/saburto/.nvm"
+export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion

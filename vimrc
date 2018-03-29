@@ -3,7 +3,7 @@
 set nocompatible
 filetype off
 set runtimepath+=~/.vim/bundle/Vundle.vim
-set rtp+=~/.fzf
+set rtp+=/usr/local/opt/fzf
 call vundle#begin()
 Plugin 'VundleVim/Vundle.vim'
 
@@ -90,34 +90,11 @@ set directory=/tmp
 
 "Configuration of vim force
 
-
-let g:apex_tooling_force_dot_com_path = "/home/saburto/app/sfdc/toolling-force.com.jar"
-if !exists("g:apex_backup_folder")
-  " full path required here, relative may not work
-  let g:apex_backup_folder="/tmp"
-endif
-if !exists("g:apex_temp_folder")
-  " full path required here, relative may not work
-  let g:apex_temp_folder="/tmp"
-endif
-if !exists("g:apex_properties_folder")
-  " full path required here, relative may not work
-  let g:apex_properties_folder="/tmp"
-endif
-
 let g:ackprg = 'ag --vimgrep'
 let g:limelight_conceal_ctermfg = 'gray'
 autocmd! User GoyoEnter Limelight
 autocmd! User GoyoLeave Limelight!
 
-if has("autocmd")
-  filetype on
-  "map <Leader>p <esc>:w<CR>:!force aura push -f %<CR>
-  let test = expand('%:t:r').'Test'
-   autocmd BufNewFile,BufRead *.cls map <Leader>t <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r") . "Test")<CR>
-   autocmd BufNewFile,BufRead *.cls map <Leader>r <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p") . " -test " . expand("%:t:r"))<CR>
-   autocmd BufNewFile,BufRead *.cls map <Leader>d <esc>:w<CR>:VimuxRunCommand("force push -f ". expand("%:p"))<CR>
-end
 
 let g:fzf_tags_command = 'ctags -R'
 let g:python3_host_prog = '/usr/bin/python3'
