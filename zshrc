@@ -8,6 +8,9 @@ SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   host          # Hostname section
   dir           # Current directory section
+  aws
+  venv
+  pyenv
   git           # Git section (git_branch + git_status)
   exec_time     # Execution time
   line_sep      # Line break
@@ -71,3 +74,10 @@ alias \$=time
 export NVM_DIR="$HOME/.nvm"
 [ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
 [ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
+
+export WORKON_HOME=~/projects/virtualenvs
+
+eval "$(pyenv init -)"
+
+if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+pyenv virtualenvwrapper
