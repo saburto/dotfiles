@@ -21,7 +21,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 
-plugins=(git bgnotify autojump tmux gradle)
+plugins=(git bgnotify autojump tmux gradle ssh-agent)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -45,6 +45,7 @@ source "$HOME/.oh-my-zsh/custom/themes/spaceship.zsh-theme"
 
 stty stop undef
 stty start undef
+stty -ixon
 
 alias tmux="env TERM=xterm-256color tmux"
 
@@ -67,3 +68,9 @@ eval "$(pyenv init -)"
 
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 pyenv virtualenvwrapper
+
+source ~/.work_related.sh
+source ~/.bin/tmuxinator.zsh
+
+fpath=(~/.zsh/completions $fpath)
+autoload -U compinit && compinit
