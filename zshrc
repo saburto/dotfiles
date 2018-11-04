@@ -59,9 +59,6 @@ alias vimf="vim \$(fzf)"
 alias \$=time
 
 export NVM_DIR="$HOME/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
-[ -s "$NVM_DIR/bash_completion" ] && \. "$NVM_DIR/bash_completion"  # This loads nvm bash_completion
-
 export WORKON_HOME=~/projects/virtualenvs
 
 eval "$(pyenv init -)"
@@ -74,3 +71,15 @@ source ~/.bin/tmuxinator.zsh
 
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
+
+# Load direnv
+eval "$(direnv hook zsh)"
+
+setopt EXTENDED_HISTORY
+setopt HIST_EXPIRE_DUPS_FIRST
+setopt HIST_IGNORE_DUPS
+setopt HIST_IGNORE_ALL_DUPS
+setopt HIST_IGNORE_SPACE
+setopt HIST_FIND_NO_DUPS
+setopt HIST_SAVE_NO_DUPS
+setopt HIST_BEEP

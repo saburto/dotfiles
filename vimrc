@@ -1,68 +1,70 @@
-" Vundle .vi
 
 set nocompatible
 filetype off
-set runtimepath+=~/.vim/bundle/Vundle.vim
+
 set rtp+=/usr/local/opt/fzf
-call vundle#begin()
-Plugin 'VundleVim/Vundle.vim'
+call plug#begin('~/.vim/plugged')
 
 " Plugins
-Plugin 'tpope/vim-sensible.git'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-repeat'
-Plugin 'tpope/vim-speeddating'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-rhubarb'
-Plugin 'tpope/vim-commentary'               " Comment stuff out
-Plugin 'tpope/vim-unimpaired'
-Plugin 'tpope/vim-dispatch'
-Plugin 'tpope/vim-sleuth'
+Plug 'tpope/vim-sensible'
+Plug 'tpope/vim-surround'
+Plug 'tpope/vim-repeat'
+Plug 'tpope/vim-speeddating'
+Plug 'tpope/vim-fugitive'
+Plug 'tpope/vim-rhubarb'
+Plug 'tpope/vim-commentary'               " Comment stuff out
+Plug 'tpope/vim-unimpaired'
+Plug 'tpope/vim-dispatch'
+Plug 'tpope/vim-sleuth'
+Plug 'tpope/vim-projectionist'
 
-Plugin 'rhysd/clever-f.vim'
+Plug 'rhysd/clever-f.vim'
 
-Plugin 'junegunn/fzf.vim'
-Plugin 'mileszs/ack.vim'
+Plug 'junegunn/fzf.vim'
+Plug 'mileszs/ack.vim'
 
 
 
-Plugin 'edkolev/tmuxline.vim'
-Plugin 'machakann/vim-highlightedyank'
-Plugin 'altercation/vim-colors-solarized.git'
+Plug 'edkolev/tmuxline.vim'
+Plug 'machakann/vim-highlightedyank'
+Plug 'altercation/vim-colors-solarized'
 
-Plugin 'scrooloose/nerdtree'
-Plugin 'ryanoasis/vim-devicons'
+Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'ryanoasis/vim-devicons'
 
-Plugin 'Valloric/YouCompleteMe'             " Autocomplete plugin
+Plug 'Valloric/YouCompleteMe'           " Autocomplete plugin
 
-Plugin 'pangloss/vim-javascript'
-Plugin 'mxw/vim-jsx'
+Plug 'pangloss/vim-javascript', { 'for' : 'javascript' }
+Plug 'mxw/vim-jsx', { 'for' : 'jsx' }
 
-Plugin 'mhinz/vim-signify'
+Plug 'mhinz/vim-signify'
 
-Plugin 'vim-airline/vim-airline'
-Plugin 'vim-airline/vim-airline-themes'
+Plug 'vim-airline/vim-airline'
+Plug 'vim-airline/vim-airline-themes'
 
-Plugin 'SirVer/ultisnips'
-Plugin 'honza/vim-snippets'
+Plug 'SirVer/ultisnips'
+Plug 'honza/vim-snippets'
 
-Plugin 'ervandew/supertab'
-Plugin 'hdima/python-syntax'
-Plugin 'w0rp/ale'
+Plug 'ervandew/supertab'
+Plug 'hdima/python-syntax'
+Plug 'w0rp/ale'
 
-Plugin 'benmills/vimux'
+Plug 'benmills/vimux'
 
-Plugin 'easymotion/vim-easymotion'
+Plug 'janko-m/vim-test'
 
-Plugin 'janko-m/vim-test'
+Plug 'majutsushi/tagbar'
+Plug 'tmux-plugins/vim-tmux-focus-events'
+Plug 'blueyed/vim-diminactive'
 
-Plugin 'majutsushi/tagbar'
+Plug 'takac/vim-hardtime'
 
-call vundle#end()
+call plug#end()
 filetype plugin indent on
 
 " Custom options
 set number
+set relativenumber
 set cursorline
 set background=light
 colorscheme solarized
@@ -158,12 +160,13 @@ nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
 nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
 nnoremap <leader>fi :YcmCompleter FixIt<CR>
 nnoremap <leader>fo :YcmCompleter Format<CR>
+nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
 nnoremap <leader>rn :YcmCompleter RefactorRename 
 nmap <leader>gd     :YcmDiags<CR>
 
 nnoremap <leader>rt :call VimuxRunCommand("mvn -pl :" . split(expand('%'), '/')[0] . " test -Dtest=" .  expand('%:t:r') . " -DfailIfNoTests=true")<CR>
 
-nnoremap <leader>p :put +<CR>
+nnoremap <leader>pp :put +<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
 nnoremap <leader>sv :source ~/.vimrc<CR>
 
@@ -221,8 +224,8 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 let VimuxUseNearestPane = 1
 
 let test#strategy = "vimux"
-let test#python#runner = 'pytest'
-let test#enabled_runners = ["python#pytest"]
+let test#python#runner = 'nose'
+let test#enabled_runners = ["python#nose"]
 
 nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
 nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
@@ -234,3 +237,6 @@ nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 vnoremap // y/\V<C-R>"<CR>
 
 map <leader>pj :%!python -m json.tool
+
+let g:diminactive_enable_focus = 1
+let g:hardtime_default_on = 1
