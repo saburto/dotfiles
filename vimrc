@@ -57,7 +57,6 @@ Plug 'majutsushi/tagbar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
 
-Plug 'takac/vim-hardtime'
 
 call plug#end()
 filetype plugin indent on
@@ -239,4 +238,3 @@ vnoremap // y/\V<C-R>"<CR>
 map <leader>pj :%!python -m json.tool
 
 let g:diminactive_enable_focus = 1
-let g:hardtime_default_on = 1
