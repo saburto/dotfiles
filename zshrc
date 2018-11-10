@@ -66,8 +66,7 @@ eval "$(pyenv init -)"
 if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 pyenv virtualenvwrapper
 
-source ~/.work_related.sh
-source ~/.bin/tmuxinator.zsh
+[ -f ~/.work_related ] && source ~/.work_related.sh
 
 fpath=(~/.zsh/completions $fpath)
 autoload -U compinit && compinit
