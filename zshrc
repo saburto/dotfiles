@@ -63,7 +63,7 @@ export WORKON_HOME=~/projects/virtualenvs
 # if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
 # pyenv virtualenvwrapper
 
-source ~/.work_related.sh
+[ -f ~/.work_related ] && source ~/.work_related.sh
 
 # Load direnv
 eval "$(direnv hook zsh)"
