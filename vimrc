@@ -1,5 +1,7 @@
 
 set nocompatible
+set lazyredraw
+
 filetype off
 
 set rtp+=/usr/local/opt/fzf
@@ -15,7 +17,6 @@ Plug 'tpope/vim-rhubarb'
 Plug 'tpope/vim-commentary'               " Comment stuff out
 Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
-Plug 'tpope/vim-sleuth'
 Plug 'tpope/vim-projectionist'
 
 Plug 'rhysd/clever-f.vim'
@@ -57,6 +58,8 @@ Plug 'majutsushi/tagbar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
 
+
+Plug 'chaoren/vim-wordmotion'
 
 call plug#end()
 filetype plugin indent on
@@ -163,7 +166,6 @@ nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
 nnoremap <leader>rn :YcmCompleter RefactorRename 
 nmap <leader>gd     :YcmDiags<CR>
 
-nnoremap <leader>rt :call VimuxRunCommand("mvn -pl :" . split(expand('%'), '/')[0] . " test -Dtest=" .  expand('%:t:r') . " -DfailIfNoTests=true")<CR>
 
 nnoremap <leader>pp :put +<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
@@ -200,7 +202,8 @@ nnoremap gj j
 map y <Plug>(highlightedyank)
 let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
-let g:airline#extensions#ale#enabled = 1
+let g:airline_extensions = []
+let g:airline#extensions#ale#enabled = 0
 let g:airline_powerline_fonts = 1
 
 " make YCM compatible with UltiSnips (using supertab)
@@ -222,9 +225,6 @@ map <Leader>vl :VimuxRunLastCommand<CR>
 
 let VimuxUseNearestPane = 1
 
-let test#strategy = "vimux"
-let test#python#runner = 'nose'
-let test#enabled_runners = ["python#nose"]
 
 nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
 nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
@@ -232,9 +232,18 @@ nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
 nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
 nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
-
 vnoremap // y/\V<C-R>"<CR>
 
-map <leader>pj :%!python -m json.tool
+map <leader>pj :%!python -m json.tool<CR>
 
 let g:diminactive_enable_focus = 1
+let test#java#maventest#file_pattern = 'Test.*\.java'
+let test#java#maventest#options = '-DfailIfNoTests=false'
+let test#strategy = 'vimux'
+
+" Ale configartion
+let g:ale_lint_on_save = 1
+let g:ale_lint_on_text_changed = 'never'
+
+let b:ale_fixers = {'python': ['prettier', 'eslint']}
+let g:ycm_echo_current_diagnostic = 0
