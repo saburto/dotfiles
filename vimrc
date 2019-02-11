@@ -30,7 +30,7 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'altercation/vim-colors-solarized'
 
-Plug 'scrooloose/nerdtree', { 'on': 'NERDTreeToggle' }
+Plug 'scrooloose/nerdtree'
 Plug 'ryanoasis/vim-devicons'
 
 Plug 'Valloric/YouCompleteMe'           " Autocomplete plugin
@@ -60,6 +60,7 @@ Plug 'blueyed/vim-diminactive'
 
 
 Plug 'chaoren/vim-wordmotion'
+Plug 'szw/vim-g'
 
 call plug#end()
 filetype plugin indent on
