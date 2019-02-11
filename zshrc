@@ -58,18 +58,12 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 alias vimf="vim \$(fzf)"
 alias \$=time
 
-export NVM_DIR="$HOME/.nvm"
 export WORKON_HOME=~/projects/virtualenvs
 
-eval "$(pyenv init -)"
-
-if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-pyenv virtualenvwrapper
+# if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
+# pyenv virtualenvwrapper
 
 [ -f ~/.work_related ] && source ~/.work_related.sh
-
-fpath=(~/.zsh/completions $fpath)
-autoload -U compinit && compinit
 
 # Load direnv
 eval "$(direnv hook zsh)"
