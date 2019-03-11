@@ -21,7 +21,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 
-plugins=(git bgnotify autojump tmux gradle ssh-agent)
+plugins=(git bgnotify autojump tmux gradle ssh-agent nvm)
 
 ZSH_TMUX_AUTOSTART=true
 
