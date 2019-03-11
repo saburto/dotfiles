@@ -30,37 +30,17 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'altercation/vim-colors-solarized'
 
-Plug 'scrooloose/nerdtree'
-Plug 'ryanoasis/vim-devicons'
-
-Plug 'Valloric/YouCompleteMe'           " Autocomplete plugin
-
-Plug 'pangloss/vim-javascript', { 'for' : 'javascript' }
-Plug 'mxw/vim-jsx', { 'for' : 'jsx' }
-
 Plug 'mhinz/vim-signify'
 
 Plug 'vim-airline/vim-airline'
 Plug 'vim-airline/vim-airline-themes'
 
-Plug 'SirVer/ultisnips'
-Plug 'honza/vim-snippets'
-
-Plug 'ervandew/supertab'
-Plug 'hdima/python-syntax'
-Plug 'w0rp/ale'
-
 Plug 'benmills/vimux'
 
-Plug 'janko-m/vim-test'
 
-Plug 'majutsushi/tagbar'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
 
-
-Plug 'chaoren/vim-wordmotion'
-Plug 'szw/vim-g'
 
 call plug#end()
 filetype plugin indent on
@@ -84,8 +64,6 @@ let maplocalleader = "\\"
 let mapleader=","
 
 let python_highlight_all = 1
-let g:ale_completion_enabled = 0
-let g:ale_linters = {'java': []}
 
 " Enable folding
 set foldmethod=indent
@@ -96,25 +74,10 @@ map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
 map <C-t> <esc>:tabnew<CR>
 
-let NERDTreeIgnore=['\.pyc$', '\~$', '__pycache__'] "ignore files in NERDTree
-let NERDTreeWinSize=40
-
-map <leader>tf :call NERDTreeToggleAndFind()<cr>
-map <leader>tt :NERDTreeToggle<CR>
-
-function! NERDTreeToggleAndFind()
-  if (exists('t:NERDTreeBufName') && bufwinnr(t:NERDTreeBufName) != -1)
-    execute ':NERDTreeClose'
-  else
-    execute ':NERDTreeFind'
-  endif
-endfunction
 
 let g:SimpylFold_docstring_preview=1
 
 let g:tmuxline_powerline_separators = 1
-let g:ycm_autoclose_preview_window_after_completion = 1
-let g:ycm_autoclose_preview_window_after_insertion = 1
 
 map <C-p> <esc>:Files<CR>
 map <C-e> <esc>:Buffers<CR>
@@ -157,16 +120,6 @@ function! SearchFromClipboard()
   execute 'Ag' getreg("+")
 endfunction
 
-nnoremap <leader>gc :YcmCompleter GoToDeclaration<CR>
-nnoremap <leader>gf :YcmCompleter GoToDefinition<CR>
-nnoremap <leader>gg :YcmCompleter GoToDefinitionElseDeclaration<CR>
-nnoremap <leader>gr :YcmCompleter GoToReferences<CR>
-nnoremap <leader>fi :YcmCompleter FixIt<CR>
-nnoremap <leader>fo :YcmCompleter Format<CR>
-nnoremap <leader>oi :YcmCompleter OrganizeImports<CR>
-nnoremap <leader>rn :YcmCompleter RefactorRename 
-nmap <leader>gd     :YcmDiags<CR>
-
 
 nnoremap <leader>pp :put +<CR>
 nnoremap <leader>ev :e ~/.vimrc<CR>
@@ -207,44 +160,8 @@ let g:airline_extensions = []
 let g:airline#extensions#ale#enabled = 0
 let g:airline_powerline_fonts = 1
 
-" make YCM compatible with UltiSnips (using supertab)
-let g:ycm_key_list_select_completion = ['<C-n>']
-let g:ycm_key_list_previous_completion = ['<C-p>']
-let g:SuperTabDefaultCompletionType = '<C-n>'
-
-" better key bindings for UltiSnipsExpandTrigger
-let g:UltiSnipsExpandTrigger = "<tab>"
-let g:UltiSnipsJumpForwardTrigger = "<tab>"
-let g:UltiSnipsJumpBackwardTrigger = "<s-tab>"
-
-let g:ycm_always_populate_location_list = 1
-let g:airline#extensions#tmuxline#enabled = 0
-
-
-vmap <leader>ts "vy:call VimuxOpenRunner()<CR>:call VimuxSendText(@v)<CR>:call VimuxSendKeys("Enter")<CR>
-map <Leader>vl :VimuxRunLastCommand<CR>
-
-let VimuxUseNearestPane = 1
-
-
-nmap <silent> t<C-n> :TestNearest<CR> " t Ctrl+n
-nmap <silent> t<C-f> :TestFile<CR>    " t Ctrl+f
-nmap <silent> t<C-s> :TestSuite<CR>   " t Ctrl+s
-nmap <silent> t<C-l> :TestLast<CR>    " t Ctrl+l
-nmap <silent> t<C-g> :TestVisit<CR>   " t Ctrl+g
 
 vnoremap // y/\V<C-R>"<CR>
 
 map <leader>pj :%!python -m json.tool<CR>
 
-let g:diminactive_enable_focus = 1
-let test#java#maventest#file_pattern = 'Test.*\.java'
-let test#java#maventest#options = '-DfailIfNoTests=false'
-let test#strategy = 'vimux'
-
-" Ale configartion
-let g:ale_lint_on_save = 1
-let g:ale_lint_on_text_changed = 'never'
-
-let b:ale_fixers = {'python': ['prettier', 'eslint']}
-let g:ycm_echo_current_diagnostic = 0
