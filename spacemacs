@@ -471,6 +471,9 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
   (setq org-agenda-files (list "~/org"))
+  (setq c-basic-offset 2)
+  (setq indent-tabs-mode nil)
+  (setq c-default-style "java")
   )
 
 ;; Do not write anything past this comment. This is where Emacs will

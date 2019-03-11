@@ -30,7 +30,6 @@ Plug 'edkolev/tmuxline.vim'
 Plug 'machakann/vim-highlightedyank'
 Plug 'altercation/vim-colors-solarized'
 
-
 Plug 'mhinz/vim-signify'
 
 Plug 'vim-airline/vim-airline'
