@@ -19,9 +19,9 @@ SPACESHIP_PROMPT_ORDER=(
   exit_code     # Exit code section
   char          # Prompt character
 )
+export SPACESHIP_VI_MODE_COLOR=black
 
-
-plugins=(git bgnotify autojump tmux gradle ssh-agent nvm vim-mode)
+plugins=(git bgnotify autojump tmux gradle ssh-agent nvm vi-mode)
 
 ZSH_TMUX_AUTOSTART=true
 
