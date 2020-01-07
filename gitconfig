@@ -29,7 +29,3 @@
 	prco = !hub pr checkout #pr number
 	pro = !hub pull-request -o -a saburto -p #pr open
 	pub = !git push --set-upstream origin `git symbolic-ref --short HEAD`
-
-
-	
-

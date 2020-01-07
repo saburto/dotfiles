@@ -1,6 +1,5 @@
 export ZSH=$HOME/.oh-my-zsh
 
-
 ZSH_THEME="spaceship"
 
 SPACESHIP_PROMPT_ORDER=(
@@ -11,6 +10,7 @@ SPACESHIP_PROMPT_ORDER=(
   aws
   venv
   pyenv
+  node
   git           # Git section (git_branch + git_status)
   exec_time     # Execution time
   line_sep      # Line break
@@ -21,7 +21,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 
 
-plugins=(git bgnotify autojump tmux gradle ssh-agent)
+plugins=(git bgnotify autojump tmux gradle ssh-agent nvm vim-mode)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -58,13 +58,6 @@ export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 alias vimf="vim \$(fzf)"
 alias \$=time
 
-export WORKON_HOME=~/projects/virtualenvs
-
-# if which pyenv-virtualenv-init > /dev/null; then eval "$(pyenv virtualenv-init -)"; fi
-# pyenv virtualenvwrapper
-
-[ -f ~/.work_related.sh ] && source ~/.work_related.sh
-
 # Load direnv
 eval "$(direnv hook zsh)"
 
@@ -76,3 +69,5 @@ setopt HIST_IGNORE_SPACE
 setopt HIST_FIND_NO_DUPS
 setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
+
+
