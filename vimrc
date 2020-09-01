@@ -86,7 +86,7 @@ nnoremap <silent> <leader>o :BTags<CR>
 nnoremap <silent> <leader>O :Tags<CR>
 nnoremap <silent> <leader>? :History<CR>
 nnoremap <silent> <leader>/ :execute 'Ag ' . input('Ag/')<CR>
-nnoremap <silent> <leader>. :AgIn 
+nnoremap <silent> <leader>. :AgIn
 
 nnoremap <silent> <leader>sw :call SearchWordWithAg()<CR>
 vnoremap <silent> <leader>sw :call SearchVisualSelectionWithAg()<CR>
@@ -165,3 +165,6 @@ vnoremap // y/\V<C-R>"<CR>
 
 map <leader>pj :%!python -m json.tool<CR>
 
+autocmd Filetype yaml setlocal ai ts=2 sw=2 et
+
+set clipboard=unnamedplus

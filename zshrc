@@ -21,7 +21,7 @@ SPACESHIP_PROMPT_ORDER=(
 )
 export SPACESHIP_VI_MODE_COLOR=black
 
-plugins=(git bgnotify autojump tmux gradle ssh-agent nvm vi-mode)
+plugins=(git bgnotify autojump tmux gradle ssh-agent nvm vi-mode kubectl)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -71,3 +71,9 @@ setopt HIST_SAVE_NO_DUPS
 setopt HIST_BEEP
 
 
+
+PATH="/home/saburto/perl5/bin${PATH:+:${PATH}}"; export PATH;
+PERL5LIB="/home/saburto/perl5/lib/perl5${PERL5LIB:+:${PERL5LIB}}"; export PERL5LIB;
+PERL_LOCAL_LIB_ROOT="/home/saburto/perl5${PERL_LOCAL_LIB_ROOT:+:${PERL_LOCAL_LIB_ROOT}}"; export PERL_LOCAL_LIB_ROOT;
+PERL_MB_OPT="--install_base \"/home/saburto/perl5\""; export PERL_MB_OPT;
+PERL_MM_OPT="INSTALL_BASE=/home/saburto/perl5"; export PERL_MM_OPT;
