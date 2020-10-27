@@ -1,10 +1,11 @@
 
 set nocompatible
 set lazyredraw
+set ttyfast
 
 filetype off
 
-set rtp+=/usr/local/opt/fzf
+set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
 call plug#begin('~/.vim/plugged')
 
 " Plugins
@@ -19,8 +20,6 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 
-Plug 'rhysd/clever-f.vim'
-
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 
@@ -28,7 +27,6 @@ Plug 'mileszs/ack.vim'
 
 Plug 'edkolev/tmuxline.vim'
 Plug 'machakann/vim-highlightedyank'
-Plug 'altercation/vim-colors-solarized'
 
 Plug 'mhinz/vim-signify'
 
@@ -41,6 +39,7 @@ Plug 'benmills/vimux'
 Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
 
+Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
 filetype plugin indent on
@@ -50,7 +49,6 @@ set number
 set relativenumber
 set cursorline
 set background=light
-colorscheme solarized
 set ts=2
 set sw=2
 set expandtab
@@ -59,6 +57,8 @@ set eol
 set encoding=UTF-8
 set splitbelow
 set splitright
+set clipboard=unnamedplus
+colorscheme nord
 
 let maplocalleader = "\\"
 let mapleader=","
@@ -154,7 +154,6 @@ nnoremap j gj
 nnoremap gj j
 
 map y <Plug>(highlightedyank)
-let g:airline_theme='solarized'
 let g:airline#extensions#tabline#enabled = 1
 let g:airline_extensions = []
 let g:airline#extensions#ale#enabled = 0
