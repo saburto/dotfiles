@@ -85,7 +85,6 @@ This function should only modify configuration layer settings."
      dap
      debug
      imenu-list
-     perl5
      (lsp :variables
 
           lsp-ui-doc-enable nil
@@ -109,7 +108,11 @@ This function should only modify configuration layer settings."
            lsp-java-format-settings-profile "GoogleStyle"
            lsp-java-vmargs '("-noverify" "-Xmx1G"  "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.8/lombok-1.18.8.jar" )
            lsp-java-completion-favorite-static-members ["org.junit.Assert.*" "org.junit.Assume.*" "org.junit.jupiter.api.Assertions.*" "org.junit.jupiter.api.Assumptions.*" "org.junit.jupiter.api.DynamicContainer.*" "org.junit.jupiter.api.DynamicTest.*" "org.mockito.Mockito.*" "org.mockito.ArgumentMatchers.*" "org.mockito.Answers.*" "org.assertj.core.api.Assertions.*"]
-           lsp-java-save-action-organize-imports nil))
+           lsp-java-save-action-organize-imports nil)
+
+     (clojure :variables
+              clojure-enable-linters 'clj-kondo)
+     )
 
    ;; List of additional packages that will be installed without being
    ;; wrapped in a layer. If you need some configuration for these
