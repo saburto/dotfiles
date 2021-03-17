@@ -5,7 +5,7 @@ set ttyfast
 
 filetype off
 
-set rtp+=/home/linuxbrew/.linuxbrew/opt/fzf
+
 call plug#begin('~/.vim/plugged')
 
 " Plugins
@@ -20,6 +20,7 @@ Plug 'tpope/vim-unimpaired'
 Plug 'tpope/vim-dispatch'
 Plug 'tpope/vim-projectionist'
 
+Plug 'junegunn/fzf', { 'do': { -> fzf#install() } }
 Plug 'junegunn/fzf.vim'
 Plug 'mileszs/ack.vim'
 
@@ -42,6 +43,8 @@ Plug 'blueyed/vim-diminactive'
 Plug 'arcticicestudio/nord-vim'
 
 call plug#end()
+
+
 filetype plugin indent on
 
 " Custom options
@@ -167,3 +170,4 @@ map <leader>pj :%!python -m json.tool<CR>
 autocmd Filetype yaml setlocal ai ts=2 sw=2 et
 
 set clipboard=unnamedplus
+
