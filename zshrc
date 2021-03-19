@@ -48,12 +48,11 @@ stty start undef
 stty -ixon
 
 alias tmux="env TERM=xterm-256color tmux"
-
-
-
-
 alias vimf="vim \$(fzf)"
 alias \$=time
+
+# Use maven d instead of mvn
+alias mvn=mvnd
 
 # Load direnv
 eval "$(direnv hook zsh)"
