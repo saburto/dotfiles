@@ -34,6 +34,7 @@ install direnv
 install xclip
 install silversearcher-ag
 install fonts-powerline
+install build-essential
 
 # Fun stuff
 install figlet
