@@ -71,7 +71,8 @@ setopt HIST_BEEP
 
 export PATH="$HOME/.cask/bin:$PATH"
 
-[ -f ~/.fzf.zsh ] && source ~/.fzf.zsh
+[ -d ~/.fzf ] && source ~/.fzf/shell/completion.zsh
+[ -d ~/.fzf ] && source ~/.fzf/shell/key-bindings.zsh
 
 export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
 export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
