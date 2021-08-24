@@ -14,14 +14,13 @@ SPACESHIP_PROMPT_ORDER=(
   git           # Git section (git_branch + git_status)
   exec_time     # Execution time
   line_sep      # Line break
-  vi_mode       # Vi-mode indicator
   jobs          # Backgound jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
 )
 export SPACESHIP_VI_MODE_COLOR=black
 
-plugins=(git bgnotify autojump tmux gradle ssh-agent nvm vi-mode kubectl)
+plugins=(git bgnotify autojump tmux gradle ssh-agent nvm kubectl)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -29,7 +28,7 @@ source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
-export EDITOR='vim'
+export EDITOR="emacsclient -c"
 bindkey "^X^E" edit-command-line
 
 if [ -d "$HOME/.local/bin" ]; then
@@ -50,6 +49,7 @@ stty -ixon
 alias tmux="env TERM=xterm-256color tmux"
 alias vimf="vim \$(fzf)"
 alias \$=time
+alias open="xdg-open"
 
 # Use maven d instead of mvn
 alias mvn=mvnd

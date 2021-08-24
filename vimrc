@@ -68,10 +68,6 @@ let mapleader=","
 
 let python_highlight_all = 1
 
-" Enable folding
-set foldmethod=indent
-set foldlevel=99
-nnoremap <space> za
 imap jj <esc>
 map <C-s> <esc>:w<CR>
 imap <C-s> <esc>:w<CR>
