@@ -1,7 +1,6 @@
-
 set nocompatible
 set lazyredraw
-set ttyfast
+    set ttyfast
 
 filetype off
 
@@ -166,4 +165,3 @@ map <leader>pj :%!python -m json.tool<CR>
 autocmd Filetype yaml setlocal ai ts=2 sw=2 et
 
 set clipboard=unnamedplus
-
