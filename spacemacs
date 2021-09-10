@@ -119,6 +119,7 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(java-snippets
+                                      todoist
                                       websocket
                                       simple-httpd
                                       org-noter
@@ -748,11 +749,19 @@ before packages are loaded."
     (interactive)
     (sh-send-line-or-region t))
 
+  (setq todoist-token (secrets-get-secret "Login" "todoist"))
+
 
   (spacemacs/declare-prefix "o" "custom")
-  (spacemacs/set-leader-keys "osg" 'engine/search-google)
-  (spacemacs/set-leader-keys "oss" 'engine/search-stack-overflow)
-  (spacemacs/set-leader-keys "ots" 'sh-send-line-or-region-and-step))
+  (spacemacs/set-leader-keys "oc" 'org-roam-capture)
+  (spacemacs/set-leader-keys "ox" 'sh-send-line-or-region-and-step)
+
+
+  (spacemacs/declare-prefix "os" "search")
+  (spacemacs/set-leader-keys "oss" 'engine/search-google)
+  (spacemacs/set-leader-keys "osa" 'engine/search-stack-overflow))
+
+
 
 
 ;; Do not write anything past this comment. This is where Emacs will
