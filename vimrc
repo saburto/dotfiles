@@ -1,3 +1,4 @@
+set t_Co=16
 set nocompatible
 set lazyredraw
     set ttyfast
@@ -40,6 +41,7 @@ Plug 'tmux-plugins/vim-tmux-focus-events'
 Plug 'blueyed/vim-diminactive'
 
 Plug 'arcticicestudio/nord-vim'
+Plug 'altercation/vim-colors-solarized'
 
 call plug#end()
 
@@ -60,7 +62,8 @@ set encoding=UTF-8
 set splitbelow
 set splitright
 set clipboard=unnamedplus
-colorscheme nord
+" colorscheme nord
+colorscheme solarized
 
 let maplocalleader = "\\"
 let mapleader=","

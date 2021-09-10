@@ -97,3 +97,5 @@ vterm_prompt_end() {
 }
 # setopt PROMPT_SUBST
 # PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
+#
+eval `dircolors /home/saburto/.dir_colors/dircolors`
