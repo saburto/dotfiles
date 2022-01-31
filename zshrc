@@ -20,7 +20,11 @@ SPACESHIP_PROMPT_ORDER=(
 )
 export SPACESHIP_VI_MODE_COLOR=black
 
-plugins=(git bgnotify autojump tmux gradle ssh-agent nvm kubectl)
+export PYENV_ROOT="$HOME/.pyenv"
+export PATH="$PYENV_ROOT/bin:$PATH"
+eval "$(pyenv init --path)"
+
+plugins=(git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv)
 
 ZSH_TMUX_AUTOSTART=true
 
