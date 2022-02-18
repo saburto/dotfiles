@@ -103,3 +103,6 @@ vterm_prompt_end() {
 # PROMPT=$PROMPT'%{$(vterm_prompt_end)%}'
 #
 eval `dircolors /home/saburto/.dir_colors/dircolors`
+
+
+[ -f ~/.work-scripts.sh ] && source ~/.work-scripts.sh
