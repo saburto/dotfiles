@@ -33,6 +33,9 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     (spacemacs-layouts :variables
+                        spacemacs-layouts-restrict-spc-tab t
+                        persp-autokill-buffer-on-remove 'kill-weak)
      (templates :variables
                 templates-private-directory "~/.dotfiles/emacs/templates")
      pdf
@@ -652,6 +655,7 @@ This function is called at the very end of Spacemacs startup, after layer
 configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
+
 
   (setq dired-listing-switches "-alh")
   (setq auto-insert-query nil)
