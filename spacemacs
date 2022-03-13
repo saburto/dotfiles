@@ -114,6 +114,7 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
+                                      real-auto-save
                                       java-snippets
                                       todoist
                                       websocket
@@ -646,6 +647,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
+
+  (require 'real-auto-save)
 )
 
 
@@ -656,9 +659,13 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-
+  (setq real-auto-save-interval 2)
   (setq dired-listing-switches "-alh")
   (setq auto-insert-query nil)
+
+
+  (add-hook 'prog-mode-hook 'real-auto-save-mode)
+  (add-hook 'org-mode-hook 'real-auto-save-mode)
 
 
   (require 'ansi-color)
