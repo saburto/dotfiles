@@ -55,8 +55,6 @@ This function should only modify configuration layer settings."
 
      (org
       :variables
-          org-enable-roam-support t
-          org-enable-roam-support t
           org-enable-hugo-support t
           org-enable-github-support t
           org-enable-reveal-js-support t
@@ -110,24 +108,9 @@ This function should only modify configuration layer settings."
    ;; '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
    dotspacemacs-additional-packages '(
-                                      real-auto-save
+                                      (lsp-java :location local)
                                       java-snippets
-                                      todoist
-                                      websocket
-                                      simple-httpd
-                                      org-noter
-                                      keychain-environment
-                                      (org-roam :location
-                                                (recipe :fetcher github
-                                                        :repo "org-roam/org-roam"
-                                                        :files (:defaults "extensions/*")))
-                                      (org-roam-ui :location
-                                                   (recipe :fetcher github
-                                                           :repo "org-roam/org-roam-ui"
-                                                           :branch "main"
-                                                           :files ("*.el" "out")))
-
-                                      )
+                                      keychain-environment)
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
@@ -152,9 +135,13 @@ It should only modify the values of Spacemacs settings."
   ;; This setq-default sexp is an exhaustive list of all the supported
   ;; spacemacs settings.
   (setq-default
-   ;; If non-nil then enable support for the portable dumper. You'll need
-   ;; to compile Emacs 27 from source following the instructions in file
+   ;; If non-nil then enable support for the portable dumper. You'll need to
+   ;; compile Emacs 27 from source following the instructions in file
    ;; EXPERIMENTAL.org at to root of the git repository.
+   ;;
+   ;; WARNING: pdumper does not work with Native Compilation, so it's disabled
+   ;; regardless of the following setting when native compilation is in effect.
+   ;;
    ;; (default nil)
    dotspacemacs-enable-emacs-pdumper nil
 
@@ -261,6 +248,11 @@ It should only modify the values of Spacemacs settings."
    ;; The minimum delay in seconds between number key presses. (default 0.4)
    dotspacemacs-startup-buffer-multi-digit-delay 0.4
 
+   ;; If non-nil, show file icons for entries and headings on Spacemacs home buffer.
+   ;; This has no effect in terminal or if "all-the-icons" package or the font
+   ;; is not installed. (default nil)
+   dotspacemacs-startup-buffer-show-icons nil
+
    ;; Default major mode for a new empty buffer. Possible values are mode
    ;; names such as `text-mode'; and `nil' to use Fundamental mode.
    ;; (default `text-mode')
@@ -294,7 +286,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -363,7 +355,7 @@ It should only modify the values of Spacemacs settings."
    ;; auto-save the file in-place, `cache' to auto-save the file to another
    ;; file stored in the cache directory and `nil' to disable auto-saving.
    ;; (default 'cache)
-   dotspacemacs-auto-save-file-location 'original
+   dotspacemacs-auto-save-file-location 'cache
 
    ;; Maximum number of rollback slots to keep in the cache. (default 5)
    dotspacemacs-max-rollback-slots 5
@@ -597,37 +589,8 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
   (setq use-package-verbose t)
 
-  (setq org-roam-directory "~/Documents/org")
   (setq plantuml-jar-path "/home/saburto/plantuml.jar")
   (setq plantuml-default-exec-mode 'jar)
-  (setq org-roam-v2-ack t)
-  (setq dash-docs-enable-debugging nil)
-
-  (defun saburto-save-all()
-    "save all no ask"
-    (interactive)
-    (save-some-buffers t))
-
-  (setq after-focus-change-function 'saburto-save-all)
-
-
-  (eval-after-load 'vterm
-    (lambda()
-
-      (defun spacemacs//substring-history (line)
-        (if (>= (length line) 15)
-            (substring line 15)
-          line))
-
-      (defun spacemacs//vterm-make-history-candidates ()
-        (with-temp-buffer
-          (insert-file-contents spacemacs-vterm-history-file-location)
-          (reverse
-           (delete-dups
-            (cl-map 'sequence 'spacemacs//substring-history
-                    (split-string (buffer-string) "\n"))))))
-
-      ))
 
   (eval-after-load 'org
     (lambda ()
@@ -643,8 +606,6 @@ If you are unsure, try setting them in `dotspacemacs/user-config' first."
 This function is called only while dumping Spacemacs configuration. You can
 `require' or `load' the libraries of your choice that will be included in the
 dump."
-
-  (require 'real-auto-save)
 )
 
 
@@ -655,41 +616,17 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (setq real-auto-save-interval 2)
-  (setq dired-listing-switches "-alh")
-  (setq auto-insert-query nil)
-
-
-  (add-hook 'prog-mode-hook 'real-auto-save-mode)
-  (add-hook 'org-mode-hook 'real-auto-save-mode)
-
-
-  (require 'ansi-color)
-  (defun compilation-buffer-apply-ansi-colors ()
-    (let ((inhibit-read-only t))
-      (goto-char compilation-filter-start)
-      (ansi-color-apply-on-region (line-beginning-position) (point-max))))
-
-  (add-hook 'compilation-filter-hook
-            'compilation-buffer-apply-ansi-colors)
 
   (set-fontset-font t '(#x1f000 . #x1faff)
                     (font-spec :family "Noto Color Emoji"))
 
-  (defvaralias 'helm-c-yas-space-match-any-greedy 'helm-yas-space-match-any-greedy "Temporary alias for Emacs27")
-
-  (setq-default display-line-numbers-width nil)
   (setq projectile-project-search-path
         '("~/git" "~/git_tree"))
-  (setq magit-repository-directories
-        '(("~/git_tree"  . 1)))
 
   (setq dotspacemacs-distinguish-gui-tab t)
   (setq vc-follow-symlinks t)
 
   (spacemacs/set-leader-keys-for-major-mode 'java-mode "tl" 'dap-java-run-last-test)
-
-
 
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
@@ -697,12 +634,6 @@ before packages are loaded."
   ;; Also in visual mode
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-
-  (defun my-flymd-browser-function (url)
-    (let ((browse-url-browser-function 'browse-url-firefox))
-      (browse-url url)))
-  (setq flymd-browser-open-function 'my-flymd-browser-function)
-
 
   (defun new-post--generate-name ()
     (setq new-post--title (read-string "Title:"))
@@ -734,73 +665,7 @@ before packages are loaded."
            (file new-post--generate-name)
            (function new-post--template-string))))
 
-
-  (defun sh-send-line-or-region (&optional step)
-    (interactive ())
-    (let ((proc (get-process "vterm"))
-          pbuf min max)
-      (unless proc
-        (let ((currbuff (current-buffer)))
-          (vterm)
-          (switch-to-buffer currbuff)
-          (setq proc (get-process "vterm"))
-          ))
-      (setq pbuff (process-buffer proc))
-      (if (use-region-p)
-          (setq min (region-beginning)
-                max (region-end))
-        (setq min (point-at-bol)
-              max (point-at-eol)))
-      (comint-send-region (process-buffer proc) min max)
-      (comint-send-string (process-buffer proc) "\n")
-      (display-buffer (process-buffer proc) t)
-      (when step
-        (goto-char max)
-        (next-line))
-      ))
-
-  (defun sh-send-line-or-region-and-step ()
-    (interactive)
-    (sh-send-line-or-region t))
-
-  (setq todoist-token (secrets-get-secret "Login" "todoist"))
-
-
-  (spacemacs/declare-prefix "o" "custom")
-  (spacemacs/set-leader-keys "oc" 'org-roam-capture)
-  (spacemacs/set-leader-keys "ox" 'sh-send-line-or-region-and-step)
-
-
-  (spacemacs/declare-prefix "os" "search")
-  (spacemacs/set-leader-keys "oss" 'engine/search-google)
-  (spacemacs/set-leader-keys "osa" 'engine/search-stack-overflow)
-
-
-  (setq org-roam-ui-sync-theme t
-        org-roam-ui-follow t
-        org-roam-ui-update-on-save t
-        org-roam-ui-open-on-start t)
-
-  (spacemacs|define-custom-layout "@Org-Roam"
-    :binding "R"
-    :body
-    (progn
-      (call-interactively 'org-roam-node-find)))
-
-  (setq org-roam-v2-ack t)
-  (setq org-roam-capture-ref-templates
-        '(("r" "ref" plain "#+begin_quote
-
- ${body}
-
-#+end_quote%?" :if-new (file+head "${slug}.org" "#+title: ${title}
-
-"))))
-  (org-roam-db-autosync-mode)
-  (require 'org-roam-protocol)
-  (org-roam-setup)
-
-  )
+  (spacemacs/declare-prefix "o" "custom"))
 
 
 
@@ -825,17 +690,11 @@ This function is called at the very end of Spacemacs initialization."
  '(native-comp-async-report-warnings-errors nil)
  '(objed-cursor-color "#BF616A")
  '(org-roam-capture-ref-templates
-   '(("r" "ref" plain "#+begin_quote
-
- ${body}
-
-#+end_quote%?" :if-new
-(file+head "${slug}.org" "#+title: ${title}
-
-")
-:unnarrowed t)))
+   '(("r" "ref" plain "#+begin_quote\12\12 ${body}\12\12#+end_quote%?" :if-new
+      (file+head "${slug}.org" "#+title: ${title}\12\12")
+      :unnarrowed t)))
  '(package-selected-packages
-   '(vala-mode engine-mode ert-runner beacon speed-type pabbrev org-tree-slide org-roam-bibtex pdf-view-restore tablist pdf-tools org-noter rainbow-identifiers rainbow-mode unicode-fonts nord-theme dockerfile-mode ag zenburn-theme zen-and-art-theme yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toc-org terminal-here tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restart-emacs rebecca-theme realgud rainbow-delimiters railscasts-theme purple-haze-theme pug-mode protobuf-mode professional-theme prettier-js popwin plantuml-mode planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pcre2el password-generator paradox ox-gfm overseer orgit organic-green-theme org-superstar org-re-reveal org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme nameless mvn mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minimal-theme meghanada maven-test-mode material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-java lorem-ipsum link-hint light-soap-theme kubernetes-tramp kubernetes-evil kaolin-themes jbeans-theme jazz-theme java-snippets ir-black-theme inkpot-theme indent-guide impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme groovy-mode groovy-imports grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido flatui-theme flatland-theme farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emr emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme dotenv-mode doom-themes django-theme diminish devdocs define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cyberpunk-theme copy-as-format company-web company-plsense company-emoji column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode chocolate-theme cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))
+   '(org-roam-ui vala-mode engine-mode ert-runner beacon speed-type pabbrev org-tree-slide org-roam-bibtex pdf-view-restore tablist pdf-tools org-noter rainbow-identifiers rainbow-mode unicode-fonts nord-theme dockerfile-mode ag zenburn-theme zen-and-art-theme yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum white-sand-theme which-key web-mode web-beautify vterm volatile-highlights vmd-mode vimrc-mode vi-tilde-fringe uuidgen use-package underwater-theme ujelly-theme twilight-theme twilight-bright-theme twilight-anti-bright-theme treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toxi-theme toc-org terminal-here tao-theme tangotango-theme tango-plus-theme tango-2-theme tagedit symon symbol-overlay sunny-day-theme sublime-themes subatomic256-theme subatomic-theme string-inflection sql-indent spaceline-all-the-icons spacegray-theme soothe-theme solarized-theme soft-stone-theme soft-morning-theme soft-charcoal-theme smyx-theme smeargle slim-mode shell-pop seti-theme scss-mode sass-mode reverse-theme restart-emacs rebecca-theme realgud rainbow-delimiters railscasts-theme purple-haze-theme pug-mode protobuf-mode professional-theme prettier-js popwin plantuml-mode planet-theme phoenix-dark-pink-theme phoenix-dark-mono-theme pcre2el password-generator paradox ox-gfm overseer orgit organic-green-theme org-superstar org-re-reveal org-projectile org-present org-pomodoro org-mime org-download org-cliplink org-brain open-junk-file omtose-phellack-theme oldlace-theme occidental-theme obsidian-theme noctilux-theme naquadah-theme nameless mvn mustang-theme multi-term move-text monokai-theme monochrome-theme molokai-theme moe-theme modus-vivendi-theme modus-operandi-theme mmm-mode minimal-theme meghanada maven-test-mode material-theme markdown-toc majapahit-theme magit-svn magit-section magit-gitflow madhat2r-theme macrostep lush-theme lsp-ui lsp-java lorem-ipsum link-hint light-soap-theme kubernetes-tramp kubernetes-evil kaolin-themes jbeans-theme jazz-theme java-snippets ir-black-theme inkpot-theme indent-guide impatient-mode hybrid-mode hungry-delete hl-todo highlight-parentheses highlight-numbers highlight-indentation heroku-theme hemisu-theme helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-gitignore helm-git-grep helm-flx helm-descbinds helm-css-scss helm-company helm-c-yasnippet helm-ag hc-zenburn-theme gruvbox-theme gruber-darker-theme groovy-mode groovy-imports grandshell-theme gotham-theme google-translate golden-ratio gnuplot gitignore-templates gitconfig-mode gitattributes-mode git-timemachine git-messenger git-link gh-md gandalf-theme fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flx-ido flatui-theme flatland-theme farmhouse-theme fancy-battery eziam-theme eyebrowse expand-region exotica-theme evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-magit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-escape evil-ediff evil-cleverparens evil-args evil-anzu eval-sexp-fu espresso-theme eshell-z eshell-prompt-extras esh-help emr emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav editorconfig dumb-jump dracula-theme dotenv-mode doom-themes django-theme diminish devdocs define-word darktooth-theme darkokai-theme darkmine-theme darkburn-theme dakrone-theme dactyl-mode cyberpunk-theme copy-as-format company-web company-plsense company-emoji column-enforce-mode color-theme-sanityinc-tomorrow color-theme-sanityinc-solarized clues-theme clean-aindent-mode chocolate-theme cherry-blossom-theme centered-cursor-mode busybee-theme bubbleberry-theme birds-of-paradise-plus-theme badwolf-theme auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile apropospriate-theme anti-zenburn-theme ample-zen-theme ample-theme alect-themes aggressive-indent afternoon-theme ace-link ace-jump-helm-line ac-ispell))
  '(pdf-view-midnight-colors (cons "#ECEFF4" "#2E3440"))
  '(rustic-ansi-faces
    ["#2E3440" "#BF616A" "#A3BE8C" "#EBCB8B" "#81A1C1" "#B48EAD" "#88C0D0" "#ECEFF4"])
@@ -845,5 +704,6 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3")))))
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3"))))
+ '(highlight-parentheses-highlight ((nil (:weight ultra-bold))) t))
 )
