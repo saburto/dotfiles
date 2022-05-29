@@ -36,10 +36,6 @@ This function should only modify configuration layer settings."
      (spacemacs-layouts :variables
                         spacemacs-layouts-restrict-spc-tab t
                         persp-autokill-buffer-on-remove 'kill-weak)
-     (templates :variables
-                templates-private-directory "~/.dotfiles/emacs/templates")
-     pdf
-     search-engine
      sql
      emoji
      html
