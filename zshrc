@@ -106,3 +106,4 @@ eval `dircolors /home/saburto/.dir_colors/dircolors`
 
 
 [ -f ~/.work-scripts.sh ] && source ~/.work-scripts.sh
+

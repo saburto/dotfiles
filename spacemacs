@@ -36,6 +36,8 @@ This function should only modify configuration layer settings."
      (spacemacs-layouts :variables
                         spacemacs-layouts-restrict-spc-tab t
                         persp-autokill-buffer-on-remove 'kill-weak)
+     (ranger :variables
+             ranger-show-preview t)
      sql
      emoji
      html
@@ -53,12 +55,7 @@ This function should only modify configuration layer settings."
                treemacs-use-filewatch-mode t
                treemacs-use-follow-mode t)
 
-     (org
-      :variables
-          org-enable-hugo-support t
-          org-enable-github-support t
-          org-enable-reveal-js-support t
-          org-want-todo-bindings t)
+     (org :variables org-want-todo-bindings t)
 
      (shell :variables
             shell-default-shell 'vterm
@@ -634,36 +631,6 @@ before packages are loaded."
   ;; Also in visual mode
   (define-key evil-visual-state-map "j" 'evil-next-visual-line)
   (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-
-  (defun new-post--generate-name ()
-    (setq new-post--title (read-string "Title:"))
-    (setq new-post--slug (org-hugo-slug new-post--title))
-    (setq new-post--lang-prefix (if (y-or-n-p "En español?") ".es" ""))
-    (expand-file-name (format "%s%s.org" new-post--slug new-post--lang-prefix) "~/git/saburto-site/content-org"))
-
-  (defun new-post--template-string ()
-    (string-join `("%(format \"#+title: %s\" new-post--title)"
-                   "#+author: Sebastian Aburto"
-                   ,(concat "#+date: " (format-time-string "%Y-%m-%d"))
-                   "#+hugo_base_dir: ../"
-                   "#+hugo_section: posts"
-                   "#+hugo_auto_set_lastmod: t"
-                   "#+hugo_draft: t"
-                   "#+hugo_tags:"
-                   "#+hugo_categories:"
-                   "#+hugo_front_matter_key_replace: author>authors"
-                   ""
-                   ""
-                   "#+hugo: more"
-                   "%?"
-                   )
-                 "\n"))
-
-  (setq org-capture-templates
-        '(("h" "ox-hugo Post"
-           plain
-           (file new-post--generate-name)
-           (function new-post--template-string))))
 
   (spacemacs/declare-prefix "o" "custom"))
 
