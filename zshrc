@@ -24,7 +24,7 @@ export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 eval "$(pyenv init --path)"
 
-plugins=(git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv)
+plugins=(aws git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -32,7 +32,7 @@ source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
-export EDITOR="emacsclient -c"
+export EDITOR=vim
 bindkey "^X^E" edit-command-line
 
 if [ -d "$HOME/.local/bin" ]; then
@@ -107,3 +107,5 @@ eval `dircolors /home/saburto/.dir_colors/dircolors`
 
 [ -f ~/.work-scripts.sh ] && source ~/.work-scripts.sh
 
+alias gitroot='cd $(git rev-parse --show-toplevel)'
+export PATH="$HOME/go/bin:$PATH"
