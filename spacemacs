@@ -663,6 +663,10 @@ before packages are loaded."
   (setq vc-follow-symlinks t)
 
 
+  (spacemacs/set-leader-keys-for-major-mode 'sql-mode "eq" 'lsp-sql-execute-query)
+  (spacemacs/set-leader-keys-for-major-mode 'sql-mode "ep" 'lsp-sql-execute-paragraph)
+  (spacemacs/set-leader-keys-for-major-mode 'sql-mode "es" 'lsp-sql-show-schemas)
+
   ;; Make evil-mode up/down operate in screen lines instead of logical lines
   (define-key evil-motion-state-map "j" 'evil-next-visual-line)
   (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
