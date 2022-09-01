@@ -22,6 +22,7 @@ export SPACESHIP_VI_MODE_COLOR=black
 
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
+export PATH="$HOME/git/adr-tools/src:$PATH"
 eval "$(pyenv init --path)"
 
 plugins=(aws git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv)
