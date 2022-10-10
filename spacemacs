@@ -78,6 +78,8 @@ This function should only modify configuration layer settings."
            tab-width 4
            java-backend 'lsp
            lsp-java-completion-favorite-static-members ["java.util.stream.Collectors.*" "org.junit.jupiter.api.Assumptions.*" "org.junit.jupiter.api.DynamicContainer.*" "org.junit.jupiter.api.DynamicTest.*" "org.mockito.Mockito.*" "org.mockito.ArgumentMatchers.*" "org.mockito.Answers.*" "org.assertj.core.api.Assertions.*"])
+           lsp-java-vmargs '("-noverify" "-Xmx4G"  "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" )
+           )
 
      (clojure :variables
               clojure-enable-linters 'clj-kondo)
