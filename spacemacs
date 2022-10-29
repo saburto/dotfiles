@@ -77,6 +77,7 @@ This function should only modify configuration layer settings."
            c-basic-offset 4
            tab-width 4
            java-backend 'lsp
+           lsp-java-vmargs ["-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx1G" "-Xms100m" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar"]
            lsp-java-completion-favorite-static-members ["java.util.stream.Collectors.*" "org.junit.jupiter.api.Assumptions.*" "org.junit.jupiter.api.DynamicContainer.*" "org.junit.jupiter.api.DynamicTest.*" "org.mockito.Mockito.*" "org.mockito.ArgumentMatchers.*" "org.mockito.Answers.*" "org.assertj.core.api.Assertions.*"])
            lsp-java-vmargs '("-noverify" "-Xmx4G"  "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" )
            )
@@ -207,6 +208,13 @@ It should only modify the values of Spacemacs settings."
    ;; by your Emacs build.
    ;; If the value is nil then no banner is displayed. (default 'official)
    dotspacemacs-startup-banner 'official
+
+   ;; Scale factor controls the scaling (size) of the startup banner. Default
+   ;; value is `auto' for scaling the logo automatically to fit all buffer
+   ;; contents, to a maximum of the full image height and a minimum of 3 line
+   ;; heights. If set to a number (int or float) it is used as a constant
+   ;; scaling factor for the default logo size.
+   dotspacemacs-startup-banner-scale 'auto
 
    ;; List of items to show in startup buffer or an association list of
    ;; the form `(list-type . list-size)`. If nil then it is disabled.
