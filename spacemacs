@@ -50,6 +50,7 @@ This function should only modify configuration layer settings."
      helm
      emacs-lisp
      (git :variables
+          git-enable-magit-delta-plugin t
           git-magit-status-fullscreen t
           magit-diff-refine-hunk 'all
           version-control-global-margin nil)
@@ -99,7 +100,7 @@ This function should only modify configuration layer settings."
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '()
+   dotspacemacs-excluded-packages '(forge)
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -676,5 +677,12 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+ '(package-selected-packages
+   '(nav-flash magit-delta yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vmd-mode vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here term-cursor tagedit symon symbol-overlay string-inflection string-edit stickyfunc-enhance srefactor sql-indent spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs realgud ranger rainbow-delimiters quickrun pug-mode prettier-js popwin pdf-view-restore pcre2el password-generator paradox overseer orgit-forge org-superstar org-rich-yank org-projectile org-present org-pomodoro org-mime org-download org-contrib org-cliplink open-junk-file npm-mode nodejs-repl nameless mvn multi-vterm multi-term multi-line mmm-mode maven-test-mode markdown-toc macrostep lsp-origami lsp-java lorem-ipsum livid-mode link-hint json-reformat json-navigator json-mode js2-refactor js-doc java-snippets inspector info+ indent-guide impatient-mode hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag groovy-mode groovy-imports google-translate golden-ratio gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flycheck-clj-kondo flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help engine-mode emr emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode doom-themes dired-quick-sort diminish devdocs define-word company-web company-emoji column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3")))))
 )

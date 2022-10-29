@@ -5,6 +5,10 @@
 	default = upstream
 [core]
 	excludesfile = /Users/saburto/.gitignore
+  pager = delta
+[delta]
+  features = side-by-side line-numbers decorations
+  syntax-theme = Solarized (light)
 [alias]
 	la = config --get-regexp alias
 	co = checkout       # Checkout a branch
