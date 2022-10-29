@@ -78,7 +78,7 @@ This function should only modify configuration layer settings."
            tab-width 4
            java-backend 'lsp
            lsp-java-vmargs ["-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx1G" "-Xms100m" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar"]
-           lsp-java-completion-favorite-static-members ["java.util.stream.Collectors.*" "org.junit.jupiter.api.Assumptions.*" "org.junit.jupiter.api.DynamicContainer.*" "org.junit.jupiter.api.DynamicTest.*" "org.mockito.Mockito.*" "org.mockito.ArgumentMatchers.*" "org.mockito.Answers.*" "org.assertj.core.api.Assertions.*"])
+           lsp-java-completion-favorite-static-members ["java.util.stream.Collectors.*" "org.junit.jupiter.api.Assumptions.*" "org.junit.jupiter.api.DynamicContainer.*" "org.junit.jupiter.api.DynamicTest.*" "org.mockito.Mockito.*" "org.mockito.ArgumentMatchers.*" "org.mockito.Answers.*" "org.assertj.core.api.Assertions.*"]
            lsp-java-vmargs '("-noverify" "-Xmx4G"  "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" )
            )
 
