@@ -49,6 +49,7 @@ This function should only modify configuration layer settings."
      yaml
      helm
      emacs-lisp
+     (vue :variables vue-backend 'lsp)
      (git :variables
           git-enable-magit-delta-plugin t
           git-magit-status-fullscreen t
@@ -73,6 +74,9 @@ This function should only modify configuration layer settings."
      (lsp :variables
           lsp-headerline-breadcrumb-enable nil
           lsp-enable-on-type-formatting nil
+          lsp-modeline-code-actions-enable nil
+          lsp-modeline-diagnostics-enable nil
+          lsp-lens-enable nil
           lsp-use-lsp-ui nil)
      (java :variables
            c-basic-offset 4
