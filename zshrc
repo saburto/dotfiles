@@ -25,7 +25,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/git/adr-tools/src:$PATH"
 eval "$(pyenv init --path)"
 
-plugins=(aws git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv)
+plugins=(aws git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv docker)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -56,8 +56,6 @@ alias vimf="vim \$(fzf)"
 alias \$=time
 alias open="xdg-open"
 
-# Use maven d instead of mvn
-alias mvn=mvnd
 
 # Load direnv
 eval "$(direnv hook zsh)"

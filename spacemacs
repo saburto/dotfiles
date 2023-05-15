@@ -27,84 +27,70 @@ This function should only modify configuration layer settings."
    dotspacemacs-ask-for-lazy-installation t
 
    ;; List of additional paths where to look for configuration layers.
-   ;; Paths must have a trailing slash (i.e. `~/.mycontribs/')
-   dotspacemacs-configuration-layer-path '()
+   ;; Paths must have a trailing slash (i.e. "~/.mycontribs/")
+   dotspacemacs-configuration-layer-path '("~/git/my-layers")
 
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
-   '(javascript
-     (spacemacs-layouts :variables
-                        spacemacs-layouts-restrict-spc-tab t
-                        persp-autokill-buffer-on-remove 'kill-weak)
-     (ranger :variables
-             ranger-show-preview t)
-     pdf
-     search-engine
-     (sql :variables
-          sql-backend 'lsp)
-     semantic
-     emoji
-     html
-     json
-     yaml
-     helm
-     emacs-lisp
-     (vue :variables vue-backend 'lsp)
-     (git :variables
-          git-enable-magit-delta-plugin t
-          git-magit-status-fullscreen t
-          magit-diff-refine-hunk 'all
-          version-control-global-margin nil)
-     (markdown :variables markdown-live-preview-engine 'vmd)
-     (treemacs :variables
-               treemacs-indentation 1
-               treemacs-use-filewatch-mode t
-               treemacs-use-follow-mode t)
-
-     (org :variables org-want-todo-bindings t)
-
-     (shell :variables
-            shell-default-shell 'vterm
-            spacemacs-vterm-history-file-location "~/.zsh_history")
-
-     spell-checking
-     syntax-checking
-     dap
-     debug
+   '(
+     ;; ----------------------------------------------------------------
+     ;; Example of useful layers you may want to use right away.
+     ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
+     ;; `M-m f e R' (Emacs style) to install them.
+     ;; ----------------------------------------------------------------
+     ;; auto-completion
+     ;; better-defaults
      (lsp :variables
-          lsp-headerline-breadcrumb-enable nil
-          lsp-enable-on-type-formatting nil
-          lsp-modeline-code-actions-enable nil
-          lsp-modeline-diagnostics-enable nil
-          lsp-lens-enable nil
-          lsp-use-lsp-ui nil)
-     (java :variables
-           c-basic-offset 4
-           tab-width 4
-           java-backend 'lsp
-           lsp-java-vmargs ["-XX:+UseParallelGC" "-XX:GCTimeRatio=4" "-XX:AdaptiveSizePolicyWeight=90" "-Dsun.zip.disableMemoryMapping=true" "-Xmx1G" "-Xms100m" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar"]
-           lsp-java-completion-favorite-static-members ["java.util.stream.Collectors.*" "org.junit.jupiter.api.Assumptions.*" "org.junit.jupiter.api.DynamicContainer.*" "org.junit.jupiter.api.DynamicTest.*" "org.mockito.Mockito.*" "org.mockito.ArgumentMatchers.*" "org.mockito.Answers.*" "org.assertj.core.api.Assertions.*"]
-           lsp-java-vmargs '("-noverify" "-Xmx4G"  "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" )
-           )
+              lsp-ui-peek-enable t
+              lsp-ui-doc-use-webkit t
+              lsp-lens-enable nil
+              lsp-headerline-breadcrumb-enable nil
+              lsp-ui-sideline-enable nil
+              lsp-modeline-code-actions-enable nil
+              lsp-modeline-diagnostics-enable nil)
+     dap
+     saburto-java
+     ;; (java :variables
+     ;;       java-backend 'lsp
+     ;;       java-snippets-enable t
+     ;;       lsp-lens-enable nil
+     ;;       lsp-headerline-breadcrumb-enable nil
+     ;;       lsp-ui-sideline-enable nil
+     ;;       lsp-modeline-code-actions-enable nil
+     ;;       lsp-modeline-diagnostics-enable nil
+     ;;       lsp-java-vmargs '("-noverify" "-Xmx4G"  "-XX:+UseG1GC" "-XX:+UseStringDeduplication" "-javaagent:/home/saburto/.m2/repository/org/projectlombok/lombok/1.18.24/lombok-1.18.24.jar" ))
+     git
+     emacs-lisp
+     ;; git
+     helm
+     ;; lsp
+     ;; markdown
+     ;; multiple-cursors
+     ;; org
+     ;; (shell :variables
+     ;;        shell-default-height 30
+     ;;        shell-default-position 'bottom)
+     ;; spell-checking
+     ;; syntax-checking
+     ;; version-control
+     treemacs)
 
-     (clojure :variables
-              clojure-enable-linters 'clj-kondo)
-     )
 
-   ;; List of additional packages that will be installed without being
-   ;; wrapped in a layer. If you need some configuration for these
-   ;; packages, then consider creating a layer. You can also put the
-   ;; configuration in `dotspacemacs/user-config'.
-   ;; To use a local version of a package, use the `:location' property:
-   ;; '(your-package :location "~/path/to/your-package/")
+   ;; List of additional packages that will be installed without being wrapped
+   ;; in a layer (generally the packages are installed only and should still be
+   ;; loaded using load/require/use-package in the user-config section below in
+   ;; this file). If you need some configuration for these packages, then
+   ;; consider creating a layer. You can also put the configuration in
+   ;; `dotspacemacs/user-config'. To use a local version of a package, use the
+   ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '(java-snippets)
+   dotspacemacs-additional-packages '()
 
    ;; A list of packages that cannot be updated.
    dotspacemacs-frozen-packages '()
 
    ;; A list of packages that will not be installed and loaded.
-   dotspacemacs-excluded-packages '(forge)
+   dotspacemacs-excluded-packages '()
 
    ;; Defines the behaviour of Spacemacs when installing packages.
    ;; Possible values are `used-only', `used-but-keep-unused' and `all'.
@@ -281,7 +267,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
+   dotspacemacs-mode-line-theme '(spacemacs)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -392,12 +378,12 @@ It should only modify the values of Spacemacs settings."
 
    ;; If non-nil the frame is maximized when Emacs starts up.
    ;; Takes effect only if `dotspacemacs-fullscreen-at-startup' is nil.
-   ;; (default nil) (Emacs 24.4+ only)
-   dotspacemacs-maximized-at-startup nil
+   ;; (default t) (Emacs 24.4+ only)
+   dotspacemacs-maximized-at-startup t
 
    ;; If non-nil the frame is undecorated when Emacs starts up. Combine this
-   ;; variable with `dotspacemacs-maximized-at-startup' in OSX to obtain
-   ;; borderless fullscreen. (default nil)
+   ;; variable with `dotspacemacs-maximized-at-startup' to obtain fullscreen
+   ;; without external boxes. Also disables the internal border. (default nil)
    dotspacemacs-undecorated-at-startup nil
 
    ;; A value from the range (0..100), in increasing opacity, which describes
@@ -409,6 +395,11 @@ It should only modify the values of Spacemacs settings."
    ;; the transparency level of a frame when it's inactive or deselected.
    ;; Transparency can be toggled through `toggle-transparency'. (default 90)
    dotspacemacs-inactive-transparency 90
+
+   ;; A value from the range (0..100), in increasing opacity, which describes the
+   ;; transparency level of a frame background when it's active or selected. Transparency
+   ;; can be toggled through `toggle-background-transparency'. (default 90)
+   dotspacemacs-background-transparency 90
 
    ;; If non-nil show the titles of transient states. (default t)
    dotspacemacs-show-transient-state-title t
@@ -448,9 +439,7 @@ It should only modify the values of Spacemacs settings."
    ;;   :size-limit-kb 1000)
    ;; When used in a plist, `visual' takes precedence over `relative'.
    ;; (default nil)
-   dotspacemacs-line-numbers '(:visual t
-                                       :disabled-for-modes dired-mode doc-view-mode pdf-view
-                                       :size-limit-kb 1000)
+   dotspacemacs-line-numbers nil
 
    ;; Code folding method. Possible values are `evil', `origami' and `vimish'.
    ;; (default 'evil)
@@ -521,7 +510,9 @@ It should only modify the values of Spacemacs settings."
    ;; (default nil - same as frame-title-format)
    dotspacemacs-icon-title-format nil
 
-   ;; Show trailing whitespace (default t)
+   ;; Color highlight trailing whitespace in all prog-mode and text-mode derived
+   ;; modes such as c++-mode, python-mode, emacs-lisp, html-mode, rst-mode etc.
+   ;; (default t)
    dotspacemacs-show-trailing-whitespace t
 
    ;; Delete whitespace while saving buffer. Possible values are `all'
@@ -581,30 +572,8 @@ It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
 
+)
 
-  (setq use-package-verbose t)
-
-
-  (setq lsp-java-jdt-download-url "https://download.eclipse.org/jdtls/milestones/1.16.0/jdt-language-server-1.16.0-202209291445.tar.gz")
-
-  (setq plantuml-jar-path "/home/saburto/plantuml.jar")
-  (setq plantuml-default-exec-mode 'jar)
-
-  (setq lsp-file-watch-threshold 2000)
-
-  (eval-after-load 'dap-java
-    (add-hook 'java-mode-local-vars-hook
-              (lambda ()
-                (spacemacs/set-leader-keys-for-major-mode 'java-mode "tl" 'dap-java-run-last-test))))
-
-  (eval-after-load 'org
-    (lambda ()
-      (setq org-startup-truncated nil)
-      (push (list "truncate" 'truncate-lines t) org-startup-options)
-      (push (list "notruncate" 'truncate-lines nil) org-startup-options)))
-
-
-  )
 
 (defun dotspacemacs/user-load ()
   "Library to load while dumping.
@@ -621,52 +590,7 @@ configuration.
 Put your configuration code here, except for variables that should be set
 before packages are loaded."
 
-  (defun org-babel-get-header (params key &optional others)
-    (delq nil
-          (mapcar
-           (lambda (p) (when (funcall (if others #'not #'identity) (eq (car p) key)) p))
-           params)))
-
-  (setq dired-listing-switches "-alh")
-  (setq auto-insert-query nil)
-
-  (setq sqlfmt-executable "sql-formatter")
-  (setq sqlfmt-options '("--language=mysql"))
-
-
-  (require 'ansi-color)
-  (defun compilation-buffer-apply-ansi-colors ()
-    (let ((inhibit-read-only t))
-      (goto-char compilation-filter-start)
-      (ansi-color-apply-on-region (line-beginning-position) (point-max))))
-
-  (add-hook 'compilation-filter-hook
-            'compilation-buffer-apply-ansi-colors)
-
-  (set-fontset-font t '(#x1f000 . #x1faff)
-                    (font-spec :family "Noto Color Emoji"))
-
-  (setq projectile-project-search-path
-        '("~/git" "~/git_tree"))
-
-  (setq dotspacemacs-distinguish-gui-tab t)
-  (setq vc-follow-symlinks t)
-
-
-  (spacemacs/set-leader-keys-for-major-mode 'sql-mode "eq" 'lsp-sql-execute-query)
-  (spacemacs/set-leader-keys-for-major-mode 'sql-mode "ep" 'lsp-sql-execute-paragraph)
-  (spacemacs/set-leader-keys-for-major-mode 'sql-mode "es" 'lsp-sql-show-schemas)
-
-  ;; Make evil-mode up/down operate in screen lines instead of logical lines
-  (define-key evil-motion-state-map "j" 'evil-next-visual-line)
-  (define-key evil-motion-state-map "k" 'evil-previous-visual-line)
-  ;; Also in visual mode
-  (define-key evil-visual-state-map "j" 'evil-next-visual-line)
-  (define-key evil-visual-state-map "k" 'evil-previous-visual-line)
-
-  (spacemacs/declare-prefix "o" "custom"))
-
-
+)
 
 
 ;; Do not write anything past this comment. This is where Emacs will
@@ -681,8 +605,84 @@ This function is called at the very end of Spacemacs initialization."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
+ '(connection-local-criteria-alist
+   '(((:application tramp)
+      tramp-connection-local-default-system-profile tramp-connection-local-default-shell-profile)))
+ '(connection-local-profile-alist
+   '((tramp-connection-local-darwin-ps-profile
+      (tramp-process-attributes-ps-args "-acxww" "-o" "pid,uid,user,gid,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state=abcde" "-o" "ppid,pgid,sess,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etime,pcpu,pmem,args")
+      (tramp-process-attributes-ps-format
+       (pid . number)
+       (euid . number)
+       (user . string)
+       (egid . number)
+       (comm . 52)
+       (state . 5)
+       (ppid . number)
+       (pgrp . number)
+       (sess . number)
+       (ttname . string)
+       (tpgid . number)
+       (minflt . number)
+       (majflt . number)
+       (time . tramp-ps-time)
+       (pri . number)
+       (nice . number)
+       (vsize . number)
+       (rss . number)
+       (etime . tramp-ps-time)
+       (pcpu . number)
+       (pmem . number)
+       (args)))
+     (tramp-connection-local-busybox-ps-profile
+      (tramp-process-attributes-ps-args "-o" "pid,user,group,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "stat=abcde" "-o" "ppid,pgid,tty,time,nice,etime,args")
+      (tramp-process-attributes-ps-format
+       (pid . number)
+       (user . string)
+       (group . string)
+       (comm . 52)
+       (state . 5)
+       (ppid . number)
+       (pgrp . number)
+       (ttname . string)
+       (time . tramp-ps-time)
+       (nice . number)
+       (etime . tramp-ps-time)
+       (args)))
+     (tramp-connection-local-bsd-ps-profile
+      (tramp-process-attributes-ps-args "-acxww" "-o" "pid,euid,user,egid,egroup,comm=abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ" "-o" "state,ppid,pgid,sid,tty,tpgid,minflt,majflt,time,pri,nice,vsz,rss,etimes,pcpu,pmem,args")
+      (tramp-process-attributes-ps-format
+       (pid . number)
+       (euid . number)
+       (user . string)
+       (egid . number)
+       (group . string)
+       (comm . 52)
+       (state . string)
+       (ppid . number)
+       (pgrp . number)
+       (sess . number)
+       (ttname . string)
+       (tpgid . number)
+       (minflt . number)
+       (majflt . number)
+       (time . tramp-ps-time)
+       (pri . number)
+       (nice . number)
+       (vsize . number)
+       (rss . number)
+       (etime . number)
+       (pcpu . number)
+       (pmem . number)
+       (args)))
+     (tramp-connection-local-default-shell-profile
+      (shell-file-name . "/bin/sh")
+      (shell-command-switch . "-c"))
+     (tramp-connection-local-default-system-profile
+      (path-separator . ":")
+      (null-device . "/dev/null"))))
  '(package-selected-packages
-   '(nav-flash magit-delta yasnippet-snippets yaml-mode xterm-color ws-butler writeroom-mode winum which-key web-mode web-beautify volatile-highlights vmd-mode vim-powerline vi-tilde-fringe uuidgen use-package undo-tree treemacs-projectile treemacs-persp treemacs-magit treemacs-icons-dired treemacs-evil toc-org terminal-here term-cursor tagedit symon symbol-overlay string-inflection string-edit stickyfunc-enhance srefactor sql-indent spacemacs-whitespace-cleanup spacemacs-purpose-popwin spaceline-all-the-icons space-doc solarized-theme smeargle slim-mode shell-pop scss-mode sass-mode restart-emacs realgud ranger rainbow-delimiters quickrun pug-mode prettier-js popwin pdf-view-restore pcre2el password-generator paradox overseer orgit-forge org-superstar org-rich-yank org-projectile org-present org-pomodoro org-mime org-download org-contrib org-cliplink open-junk-file npm-mode nodejs-repl nameless mvn multi-vterm multi-term multi-line mmm-mode maven-test-mode markdown-toc macrostep lsp-origami lsp-java lorem-ipsum livid-mode link-hint json-reformat json-navigator json-mode js2-refactor js-doc java-snippets inspector info+ indent-guide impatient-mode hybrid-mode hungry-delete holy-mode hl-todo highlight-parentheses highlight-numbers highlight-indentation hide-comnt help-fns+ helm-xref helm-themes helm-swoop helm-purpose helm-projectile helm-org-rifle helm-org helm-mode-manager helm-make helm-lsp helm-ls-git helm-git-grep helm-descbinds helm-css-scss helm-company helm-cider helm-c-yasnippet helm-ag groovy-mode groovy-imports google-translate golden-ratio gnuplot gitignore-templates git-timemachine git-modes git-messenger git-link gh-md fuzzy font-lock+ flyspell-correct-helm flycheck-pos-tip flycheck-package flycheck-elsa flycheck-clj-kondo flx-ido fancy-battery eyebrowse expand-region evil-visualstar evil-visual-mark-mode evil-unimpaired evil-tutor evil-textobj-line evil-surround evil-org evil-numbers evil-nerd-commenter evil-matchit evil-lisp-state evil-lion evil-indent-plus evil-iedit-state evil-goggles evil-exchange evil-evilified-state evil-escape evil-ediff evil-easymotion evil-collection evil-cleverparens evil-args evil-anzu eshell-z eshell-prompt-extras esh-help engine-mode emr emojify emoji-cheat-sheet-plus emmet-mode elisp-slime-nav elisp-def editorconfig dumb-jump drag-stuff dotenv-mode doom-themes dired-quick-sort diminish devdocs define-word company-web company-emoji column-enforce-mode clojure-snippets clean-aindent-mode cider-eval-sexp-fu centered-cursor-mode auto-yasnippet auto-highlight-symbol auto-dictionary auto-compile aggressive-indent ace-link ace-jump-helm-line ac-ispell)))
+   '(parrot nameless golden-ratio column-enforce-mode evil-escape evil-exchange solarized-theme spacemacs-purpose-popwin dired-quick-sort flx-ido treemacs-persp git-timemachine lorem-ipsum evil-goggles vi-tilde-fringe dumb-jump ace-jump-helm-line vim-powerline evil-evilified-state macrostep quickrun treemacs-evil evil-cleverparens flycheck-elsa info+ spacemacs-whitespace-cleanup lsp-origami lsp-java eyebrowse clean-aindent-mode evil-easymotion evil-collection emr multi-line evil-iedit-state maven-test-mode evil-visualstar smeargle evil-mc evil-numbers helm-git-grep toc-org evil-anzu volatile-highlights evil-tutor elisp-slime-nav helm-xref git-messenger popwin elisp-def flycheck-pos-tip treemacs-icons-dired groovy-imports helm-ag holy-mode auto-yasnippet expand-region helm-purpose groovy-mode centered-cursor-mode help-fns+ helm-company symbol-overlay helm-mode-manager link-hint auto-compile define-word string-edit-at-point helm-projectile treemacs-magit uuidgen winum helm-swoop git-link undo-tree flycheck-package treemacs-projectile space-doc ace-link hide-comnt spaceline writeroom-mode hungry-delete restart-emacs helm-org helm-themes diminish forge evil-textobj-line helm-lsp which-key pcre2el helm-descbinds gitignore-templates fancy-battery indent-guide evil-nerd-commenter evil-lion all-the-icons ws-butler symon drag-stuff eval-sexp-fu paradox highlight-indentation highlight-parentheses highlight-numbers evil-surround mvn git-modes evil-args auto-highlight-symbol lsp-ui org-superstar open-junk-file evil-visual-mark-mode devdocs inspector ac-ispell aggressive-indent string-inflection helm-make evil-indent-plus evil-lisp-state yasnippet-snippets helm-ls-git fuzzy evil-matchit editorconfig google-translate term-cursor rainbow-delimiters evil-unimpaired hl-todo password-generator doom-themes helm-c-yasnippet dotenv-mode overseer hybrid-mode)))
 (custom-set-faces
  ;; custom-set-faces was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.

@@ -163,7 +163,7 @@ let g:airline_powerline_fonts = 1
 
 vnoremap // y/\V<C-R>"<CR>
 
-map <leader>pj :%!python -m json.tool<CR>
+map <leader>pj :%!python3 -m json.tool<CR>
 
 autocmd Filetype yaml setlocal ai ts=2 sw=2 et
 
