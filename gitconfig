@@ -4,7 +4,7 @@
 [push]
 	default = upstream
 [core]
-	excludesfile = /Users/saburto/.gitignore
+	excludesfile = /home/saburto/.gitignore
   pager = delta
 [delta]
   features = side-by-side line-numbers decorations
