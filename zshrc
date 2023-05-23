@@ -19,7 +19,7 @@ SPACESHIP_PROMPT_ORDER=(
   char          # Prompt character
 )
 export SPACESHIP_VI_MODE_COLOR=black
-
+export LD_LIBRARY_PATH="/usr/local/lib/tree-sitter:$LD_LIBRARY_PATH"
 export PYENV_ROOT="$HOME/.pyenv"
 export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/git/adr-tools/src:$PATH"
