@@ -33,6 +33,7 @@ This function should only modify configuration layer settings."
    ;; List of configuration layers to load.
    dotspacemacs-configuration-layers
    '(
+     (clojure :variables clojure-backend 'lsp)
      ;; ----------------------------------------------------------------
      ;; Example of useful layers you may want to use right away.
      ;; Uncomment some layer names and press `SPC f e R' (Vim style) or
@@ -84,10 +85,10 @@ This function should only modify configuration layer settings."
    ;; `dotspacemacs/user-config'. To use a local version of a package, use the
    ;; `:location' property: '(your-package :location "~/path/to/your-package/")
    ;; Also include the dependencies as they will not be resolved automatically.
-   dotspacemacs-additional-packages '()
+   dotspacemacs-additional-packages '(flycheck-inline kaocha-runner)
 
    ;; A list of packages that cannot be updated.
-   dotspacemacs-frozen-packages '()
+   dotspacemacs-frozen-packages '(flycheck-popup-tip)
 
    ;; A list of packages that will not be installed and loaded.
    dotspacemacs-excluded-packages '()
@@ -267,7 +268,7 @@ It should only modify the values of Spacemacs settings."
    ;; refer to the DOCUMENTATION.org for more info on how to create your own
    ;; spaceline theme. Value can be a symbol or list with additional properties.
    ;; (default '(spacemacs :separator wave :separator-scale 1.5))
-   dotspacemacs-mode-line-theme '(spacemacs)
+   dotspacemacs-mode-line-theme '(spacemacs :separator wave :separator-scale 1.5)
 
    ;; If non-nil the cursor color matches the state color in GUI Emacs.
    ;; (default t)
@@ -571,6 +572,8 @@ configuration.
 It is mostly for variables that should be set before packages are loaded.
 If you are unsure, try setting them in `dotspacemacs/user-config' first."
 
+  (with-eval-after-load 'flycheck
+    (add-hook 'flycheck-mode-hook #'flycheck-inline-mode))
 
 )
 
@@ -682,5 +685,11 @@ This function is called at the very end of Spacemacs initialization."
       (path-separator . ":")
       (null-device . "/dev/null"))))
  '(package-selected-packages
-   '(parrot nameless golden-ratio column-enforce-mode evil-escape evil-exchange solarized-theme spacemacs-purpose-popwin dired-quick-sort flx-ido treemacs-persp git-timemachine lorem-ipsum evil-goggles vi-tilde-fringe dumb-jump ace-jump-helm-line vim-powerline evil-evilified-state macrostep quickrun treemacs-evil evil-cleverparens flycheck-elsa info+ spacemacs-whitespace-cleanup lsp-origami lsp-java eyebrowse clean-aindent-mode evil-easymotion evil-collection emr multi-line evil-iedit-state maven-test-mode evil-visualstar smeargle evil-mc evil-numbers helm-git-grep toc-org evil-anzu volatile-highlights evil-tutor elisp-slime-nav helm-xref git-messenger popwin elisp-def flycheck-pos-tip treemacs-icons-dired groovy-imports helm-ag holy-mode auto-yasnippet expand-region helm-purpose groovy-mode centered-cursor-mode help-fns+ helm-company symbol-overlay helm-mode-manager link-hint auto-compile define-word string-edit-at-point helm-projectile treemacs-magit uuidgen winum helm-swoop git-link undo-tree flycheck-package treemacs-projectile space-doc ace-link hide-comnt spaceline writeroom-mode hungry-delete restart-emacs helm-org helm-themes diminish forge evil-textobj-line helm-lsp which-key pcre2el helm-descbinds gitignore-templates fancy-battery indent-guide evil-nerd-commenter evil-lion all-the-icons ws-butler symon drag-stuff eval-sexp-fu paradox highlight-indentation highlight-parentheses highlight-numbers evil-surround mvn git-modes evil-args auto-highlight-symbol lsp-ui org-superstar open-junk-file evil-visual-mark-mode devdocs inspector ac-ispell aggressive-indent string-inflection helm-make evil-indent-plus evil-lisp-state yasnippet-snippets helm-ls-git fuzzy evil-matchit editorconfig google-translate term-cursor rainbow-delimiters evil-unimpaired hl-todo password-generator doom-themes helm-c-yasnippet dotenv-mode overseer hybrid-mode)))
+   '(kaocha-runner parrot nameless golden-ratio column-enforce-mode evil-escape evil-exchange solarized-theme spacemacs-purpose-popwin dired-quick-sort flx-ido treemacs-persp git-timemachine lorem-ipsum evil-goggles vi-tilde-fringe dumb-jump ace-jump-helm-line vim-powerline evil-evilified-state macrostep quickrun treemacs-evil evil-cleverparens flycheck-elsa info+ spacemacs-whitespace-cleanup lsp-origami lsp-java eyebrowse clean-aindent-mode evil-easymotion evil-collection emr multi-line evil-iedit-state maven-test-mode evil-visualstar smeargle evil-mc evil-numbers helm-git-grep toc-org evil-anzu volatile-highlights evil-tutor elisp-slime-nav helm-xref git-messenger popwin elisp-def flycheck-pos-tip treemacs-icons-dired groovy-imports helm-ag holy-mode auto-yasnippet expand-region helm-purpose groovy-mode centered-cursor-mode help-fns+ helm-company symbol-overlay helm-mode-manager link-hint auto-compile define-word string-edit-at-point helm-projectile treemacs-magit uuidgen winum helm-swoop git-link undo-tree flycheck-package treemacs-projectile space-doc ace-link hide-comnt spaceline writeroom-mode hungry-delete restart-emacs helm-org helm-themes diminish forge evil-textobj-line helm-lsp which-key pcre2el helm-descbinds gitignore-templates fancy-battery indent-guide evil-nerd-commenter evil-lion all-the-icons ws-butler symon drag-stuff eval-sexp-fu paradox highlight-indentation highlight-parentheses highlight-numbers evil-surround mvn git-modes evil-args auto-highlight-symbol lsp-ui org-superstar open-junk-file evil-visual-mark-mode devdocs inspector ac-ispell aggressive-indent string-inflection helm-make evil-indent-plus evil-lisp-state yasnippet-snippets helm-ls-git fuzzy evil-matchit editorconfig google-translate term-cursor rainbow-delimiters evil-unimpaired hl-todo password-generator doom-themes helm-c-yasnippet dotenv-mode overseer hybrid-mode)))
+(custom-set-faces
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(default ((((class color) (min-colors 89)) (:foreground "#657b83" :background "#fdf6e3")))))
 )
