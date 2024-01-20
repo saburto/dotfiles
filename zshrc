@@ -1,31 +1,3 @@
-export ZSH=$HOME/.oh-my-zsh
-
-ZSH_THEME="spaceship"
-
-SPACESHIP_PROMPT_ORDER=(
-  time          # Time stampts section
-  user          # Username section
-  host          # Hostname section
-  dir           # Current directory section
-  aws
-  venv
-  pyenv
-  node
-  git           # Git section (git_branch + git_status)
-  exec_time     # Execution time
-  line_sep      # Line break
-  jobs          # Backgound jobs indicator
-  exit_code     # Exit code section
-  char          # Prompt character
-)
-export SPACESHIP_VI_MODE_COLOR=black
-export LD_LIBRARY_PATH="/usr/local/lib/tree-sitter:$LD_LIBRARY_PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
-export PATH="$HOME/git/adr-tools/src:$PATH"
-eval "$(pyenv init --path)"
-
-plugins=(aws git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv docker)
 
 ZSH_TMUX_AUTOSTART=true
 
