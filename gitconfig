@@ -6,6 +6,7 @@
 [core]
 	excludesfile = /home/saburto/.gitignore
   pager = delta
+	editor = nvim
 [delta]
   features = side-by-side line-numbers decorations
   syntax-theme = Solarized (light)

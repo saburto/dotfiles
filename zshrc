@@ -9,7 +9,6 @@ SPACESHIP_PROMPT_ORDER=(
   dir           # Current directory section
   aws
   venv
-  pyenv
   node
   git           # Git section (git_branch + git_status)
   exec_time     # Execution time
