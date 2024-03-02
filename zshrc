@@ -109,3 +109,5 @@ eval `dircolors /home/saburto/.dir_colors/dircolors`
 alias gitroot='cd $(git rev-parse --show-toplevel)'
 export PATH="$HOME/go/bin:$PATH"
 export MOZ_ENABLE_WAYLAND=1
+
+export PATH=$PATH:/home/saburto/.spicetify
