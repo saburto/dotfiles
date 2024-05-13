@@ -1,11 +1,13 @@
 [user]
 	name = Sebastian Aburto
 	email = seba.aburto@gmail.com
+  signingkey = ~/.ssh/id_rsa.pub
 [push]
 	default = upstream
 [core]
 	excludesfile = /home/saburto/.gitignore
   pager = delta
+	editor = nvim
 [delta]
   features = side-by-side line-numbers decorations
   syntax-theme = Solarized (light)
@@ -33,5 +35,14 @@
 	prco = !hub pr checkout #pr number
 	pro = !hub pull-request -o -a saburto -p #pr open
 	pub = !git push --set-upstream origin `git symbolic-ref --short HEAD`
+  pf = push --force-with-lease
 [init]
 	defaultBranch = main
+[merge]
+	tool = nvimdiff
+[gpg]
+	format = ssh
+[includeIf "gitdir:~/projects/"]
+  path = ~/projects/.gitconfig
+[commit]
+	gpgSign = true
