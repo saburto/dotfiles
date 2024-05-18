@@ -1,7 +1,7 @@
 [user]
 	name = Sebastian Aburto
 	email = seba.aburto@gmail.com
-  signingkey = ~/.ssh/id_rsa.pub
+	signingkey = /home/saburto/.ssh/id_ed25519.pub
 [push]
 	default = upstream
 [core]
@@ -38,11 +38,16 @@
   pf = push --force-with-lease
 [init]
 	defaultBranch = main
-[merge]
-	tool = nvimdiff
 [gpg]
 	format = ssh
 [includeIf "gitdir:~/projects/"]
   path = ~/projects/.gitconfig
 [commit]
 	gpgSign = true
+[merge]
+  tool = nvim
+[mergetool]
+  prompt = false
+  keepBackup = false
+[mergetool "nvim"]
+  cmd = nvim -d $BASE $LOCAL $REMOTE $MERGED -c '$wincmd w' -c 'wincmd J'
