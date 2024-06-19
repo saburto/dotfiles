@@ -24,7 +24,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/git/adr-tools/src:$PATH"
 eval "$(pyenv init --path)"
 
-plugins=(aws git bgnotify autojump tmux gradle ssh-agent nvm kubectl pyenv docker)
+plugins=(aws fzf git bgnotify zoxide tmux gradle ssh-agent nvm kubectl pyenv docker)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -51,20 +51,10 @@ stty start undef
 stty -ixon
 
 alias tmux="env TERM=xterm-256color tmux"
-alias vimf="vim \$(fzf)"
 alias \$=time
 
 
-# Load direnv
-eval "$(direnv hook zsh)"
-
-
 export PATH="$HOME/.cask/bin:$PATH"
-
-
-export FZF_DEFAULT_COMMAND='ag --nocolor -g ""'
-export FZF_CTRL_T_COMMAND="$FZF_DEFAULT_COMMAND"
-export FZF_ALT_C_COMMAND="$FZF_DEFAULT_COMMAND"
 
 
 [ -f ~/.work-scripts.sh ] && source ~/.work-scripts.sh
@@ -78,3 +68,28 @@ export PATH="/opt/homebrew/opt/openssl@1.1/bin:$PATH"
 export LDFLAGS="-L/opt/homebrew/opt/openssl@1.1/lib"
 export CPPFLAGS="-I/opt/homebrew/opt/openssl@1.1/include"
 export PKG_CONFIG_PATH="/opt/homebrew/opt/openssl@1.1/lib/pkgconfig"
+
+# cht.sh
+fpath=(~/.zsh.d/ $fpath)
+
+# fzf
+# Open in tmux popup if on tmux, otherwise use --height mode
+export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
+
+# Linux version of OSX pbcopy and pbpaste.
+alias pbcopy="xsel -ib"
+alias pbpaste="xsel -ib"
+
+# CTRL-/ to toggle small preview window to see the full command
+# CTRL-Y to copy the command into clipboard using pbcopy
+export FZF_CTRL_R_OPTS="
+  --preview 'echo {}' --preview-window up:3:hidden:wrap
+  --bind 'ctrl-/:toggle-preview'
+  --bind 'ctrl-y:execute-silent(echo -n {2..} | xsel -ib)+abort'
+  --color header:italic
+  --header 'Press CTRL-Y to copy command into clipboard'"
+
+# Print tree structure in the preview window
+export FZF_ALT_C_OPTS="
+  --walker-skip .git,node_modules,target
+  --preview 'tree -C {}'"
