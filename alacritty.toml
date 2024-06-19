@@ -1,0 +1,21 @@
+import = [ "~/.config/alacritty/rose-pine/dist/rose-pine-dawn.toml" ]
+
+[font]
+size = 12
+
+# [font.normal]
+# family = "FiraCode Nerd Font"
+
+[selection]
+save_to_clipboard = true
+
+[env]
+TERM = "xterm-256color"
+
+[window]
+padding.x = 10
+padding.y = 10
+
+decorations = "None"
+
+
