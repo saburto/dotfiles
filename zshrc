@@ -93,3 +93,11 @@ export FZF_CTRL_R_OPTS="
 export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
+
+alias et="exercism test"
+alias es="exercism submit"
+alias eo="exercism o"
+alias ets="exercism test && exercism submit"
+alias etso="exercism test && exercism submit && exercism open"
+
+export CHTSH_QUERY_OPTIONS="style=default"
