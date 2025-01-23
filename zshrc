@@ -7,13 +7,8 @@ SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   host          # Hostname section
   dir           # Current directory section
-  aws
-  venv
-  node
-  git           # Git section (git_branch + git_status)
   exec_time     # Execution time
   line_sep      # Line break
-  jobs          # Background jobs indicator
   exit_code     # Exit code section
   char          # Prompt character
 )
@@ -24,7 +19,7 @@ export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/git/adr-tools/src:$PATH"
 eval "$(pyenv init --path)"
 
-plugins=(aws fzf git bgnotify zoxide tmux gradle ssh-agent nvm kubectl pyenv docker)
+plugins=(aws fzf git bgnotify zoxide gradle ssh-agent nvm kubectl pyenv docker tmux brew)
 
 ZSH_TMUX_AUTOSTART=true
 
@@ -32,7 +27,7 @@ source $ZSH/oh-my-zsh.sh
 
 export LANG=en_US.UTF-8
 
-export EDITOR=vim
+export EDITOR=nvim
 bindkey "^X^E" edit-command-line
 
 if [ -d "$HOME/.local/bin" ]; then
@@ -76,9 +71,9 @@ fpath=(~/.zsh.d/ $fpath)
 # Open in tmux popup if on tmux, otherwise use --height mode
 export FZF_DEFAULT_OPTS='--height 40% --tmux bottom,40% --layout reverse --border top'
 
-# Linux version of OSX pbcopy and pbpaste.
-alias pbcopy="xsel -ib"
-alias pbpaste="xsel -ib"
+# # Linux version of OSX pbcopy and pbpaste.
+# alias pbcopy="xsel -ib"
+# alias pbpaste="xsel -ib"
 
 # CTRL-/ to toggle small preview window to see the full command
 # CTRL-Y to copy the command into clipboard using pbcopy
@@ -101,3 +96,11 @@ alias ets="exercism test && exercism submit"
 alias etso="exercism test && exercism submit && exercism open"
 
 export CHTSH_QUERY_OPTIONS="style=default"
+
+alias n=nvim
+
+. "$HOME/.atuin/bin/env"
+
+eval "$(atuin init zsh)"
+zstyle ':completion:*' use-cache on
+zstyle ':completion:*' cache-path ~/.zsh/cache
