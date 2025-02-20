@@ -104,3 +104,5 @@ alias n=nvim
 eval "$(atuin init zsh)"
 zstyle ':completion:*' use-cache on
 zstyle ':completion:*' cache-path ~/.zsh/cache
+
+export RUNEWIDTH_EASTASIAN=0
