@@ -7,11 +7,13 @@ SPACESHIP_PROMPT_ORDER=(
   user          # Username section
   host          # Hostname section
   dir           # Current directory section
+  git
   exec_time     # Execution time
   line_sep      # Line break
   exit_code     # Exit code section
   char          # Prompt character
 )
+export SPACESHIP_GIT_STATUS_SHOW=false
 export SPACESHIP_VI_MODE_COLOR=black
 export LD_LIBRARY_PATH="/usr/local/lib/tree-sitter:$LD_LIBRARY_PATH"
 export PATH="$HOME/git/adr-tools/src:$PATH"
