@@ -14,12 +14,9 @@ SPACESHIP_PROMPT_ORDER=(
 )
 export SPACESHIP_VI_MODE_COLOR=black
 export LD_LIBRARY_PATH="/usr/local/lib/tree-sitter:$LD_LIBRARY_PATH"
-export PYENV_ROOT="$HOME/.pyenv"
-export PATH="$PYENV_ROOT/bin:$PATH"
 export PATH="$HOME/git/adr-tools/src:$PATH"
-eval "$(pyenv init --path)"
 
-plugins=(aws fzf git bgnotify zoxide gradle ssh-agent nvm kubectl pyenv docker tmux brew heroku)
+plugins=(aws fzf git bgnotify zoxide gradle ssh-agent nvm kubectl uv docker tmux brew heroku)
 
 ZSH_TMUX_AUTOSTART=true
 
