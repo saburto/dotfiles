@@ -5,9 +5,10 @@
 [push]
 	default = upstream
 [core]
-	excludesfile = /home/saburto/.gitignore
+	excludesfile = ~/.gitignore
   pager = delta
 	editor = nvim
+	hooksPath = no-hooks
 [delta]
   features = side-by-side line-numbers decorations
   syntax-theme = Solarized (light)
@@ -42,9 +43,7 @@
 [gpg]
 	format = ssh
 [includeIf "gitdir:~/projects/"]
-  path = ~/projects/.gitconfig
-[commit]
-	gpgSign = true
+  path = ~/git_tree/.gitconfig
 [merge]
   tool = nvim
 [mergetool]
