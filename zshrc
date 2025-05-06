@@ -88,11 +88,13 @@ export FZF_ALT_C_OPTS="
   --walker-skip .git,node_modules,target
   --preview 'tree -C {}'"
 
+# Excercism shortcuts
 alias et="exercism test"
 alias es="exercism submit"
 alias eo="exercism o"
 alias ets="exercism test && exercism submit"
 alias etso="exercism test && exercism submit && exercism open"
+alias excd='cd $(fd -a -t d --full-path $(exercism workspace) -d 3 ~/. | fzf)'
 
 export CHTSH_QUERY_OPTIONS="style=default"
 
