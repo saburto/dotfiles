@@ -42,7 +42,7 @@
 	defaultBranch = main
 [gpg]
 	format = ssh
-[includeIf "gitdir:~/projects/"]
+[includeIf "gitdir:~/git_tree/"]
   path = ~/git_tree/.gitconfig
 [merge]
   tool = nvim
